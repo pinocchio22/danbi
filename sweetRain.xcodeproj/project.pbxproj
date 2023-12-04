@@ -9,12 +9,19 @@
 /* Begin PBXBuildFile section */
 		77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5962B1E0A830034C519 /* AppDelegate.swift */; };
 		77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5982B1E0A830034C519 /* SceneDelegate.swift */; };
-		77DFF59B2B1E0A830034C519 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF59A2B1E0A830034C519 /* ViewController.swift */; };
+		77DFF59B2B1E0A830034C519 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF59A2B1E0A830034C519 /* TodayViewController.swift */; };
 		77DFF5A02B1E0A840034C519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFF59F2B1E0A840034C519 /* Assets.xcassets */; };
 		77DFF5A32B1E0A840034C519 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFF5A12B1E0A840034C519 /* LaunchScreen.storyboard */; };
 		77DFF5AE2B1E0A850034C519 /* sweetRainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5AD2B1E0A850034C519 /* sweetRainTests.swift */; };
 		77DFF5B82B1E0A850034C519 /* sweetRainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5B72B1E0A850034C519 /* sweetRainUITests.swift */; };
 		77DFF5BA2B1E0A850034C519 /* sweetRainUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5B92B1E0A850034C519 /* sweetRainUITestsLaunchTests.swift */; };
+		77DFF5CC2B1E210D0034C519 /* SharedSegmentedControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5CB2B1E210D0034C519 /* SharedSegmentedControllerView.swift */; };
+		77DFF5CE2B1E211D0034C519 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5CD2B1E211D0034C519 /* NetworkService.swift */; };
+		77DFF5D02B1E21290034C519 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5CF2B1E21290034C519 /* Util.swift */; };
+		77DFF5D52B1E21D00034C519 /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5D42B1E21D00034C519 /* WeeklyViewController.swift */; };
+		77DFF5D72B1E21E40034C519 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5D62B1E21E40034C519 /* SettingViewController.swift */; };
+		77DFF5DA2B1E23D30034C519 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77DFF5D92B1E23D30034C519 /* SnapKit */; };
+		77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +45,7 @@
 		77DFF5932B1E0A830034C519 /* sweetRain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sweetRain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DFF5962B1E0A830034C519 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77DFF5982B1E0A830034C519 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		77DFF59A2B1E0A830034C519 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		77DFF59A2B1E0A830034C519 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		77DFF59F2B1E0A840034C519 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77DFF5A22B1E0A840034C519 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77DFF5A42B1E0A840034C519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +54,12 @@
 		77DFF5B32B1E0A850034C519 /* sweetRainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sweetRainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DFF5B72B1E0A850034C519 /* sweetRainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sweetRainUITests.swift; sourceTree = "<group>"; };
 		77DFF5B92B1E0A850034C519 /* sweetRainUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sweetRainUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		77DFF5CB2B1E210D0034C519 /* SharedSegmentedControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSegmentedControllerView.swift; sourceTree = "<group>"; };
+		77DFF5CD2B1E211D0034C519 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		77DFF5CF2B1E21290034C519 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		77DFF5D42B1E21D00034C519 /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
+		77DFF5D62B1E21E40034C519 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77DFF5DA2B1E23D30034C519 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +111,12 @@
 		77DFF5952B1E0A830034C519 /* sweetRain */ = {
 			isa = PBXGroup;
 			children = (
+				77DFF5CA2B1E20960034C519 /* Utils */,
+				77DFF5C82B1E20850034C519 /* Service */,
+				77DFF5C62B1E20570034C519 /* Shared */,
+				77DFF5C72B1E205F0034C519 /* Scene */,
 				77DFF5962B1E0A830034C519 /* AppDelegate.swift */,
 				77DFF5982B1E0A830034C519 /* SceneDelegate.swift */,
-				77DFF59A2B1E0A830034C519 /* ViewController.swift */,
 				77DFF59F2B1E0A840034C519 /* Assets.xcassets */,
 				77DFF5A12B1E0A840034C519 /* LaunchScreen.storyboard */,
 				77DFF5A42B1E0A840034C519 /* Info.plist */,
@@ -124,6 +141,65 @@
 			path = sweetRainUITests;
 			sourceTree = "<group>";
 		};
+		77DFF5C62B1E20570034C519 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5CB2B1E210D0034C519 /* SharedSegmentedControllerView.swift */,
+				77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		77DFF5C72B1E205F0034C519 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5D32B1E218B0034C519 /* Settings */,
+				77DFF5D22B1E21710034C519 /* Weekly */,
+				77DFF5D12B1E21650034C519 /* Today */,
+				77DFF59A2B1E0A830034C519 /* TodayViewController.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		77DFF5C82B1E20850034C519 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5CD2B1E211D0034C519 /* NetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		77DFF5CA2B1E20960034C519 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5CF2B1E21290034C519 /* Util.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		77DFF5D12B1E21650034C519 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		77DFF5D22B1E21710034C519 /* Weekly */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5D42B1E21D00034C519 /* WeeklyViewController.swift */,
+			);
+			path = Weekly;
+			sourceTree = "<group>";
+		};
+		77DFF5D32B1E218B0034C519 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5D62B1E21E40034C519 /* SettingViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,6 +216,9 @@
 			dependencies = (
 			);
 			name = sweetRain;
+			packageProductDependencies = (
+				77DFF5D92B1E23D30034C519 /* SnapKit */,
+			);
 			productName = sweetRain;
 			productReference = 77DFF5932B1E0A830034C519 /* sweetRain.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +291,9 @@
 				Base,
 			);
 			mainGroup = 77DFF58A2B1E0A830034C519;
+			packageReferences = (
+				77DFF5D82B1E23D30034C519 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 77DFF5942B1E0A830034C519 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -254,9 +336,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DFF59B2B1E0A830034C519 /* ViewController.swift in Sources */,
+				77DFF5D52B1E21D00034C519 /* WeeklyViewController.swift in Sources */,
+				77DFF5CE2B1E211D0034C519 /* NetworkService.swift in Sources */,
+				77DFF5D02B1E21290034C519 /* Util.swift in Sources */,
+				77DFF5D72B1E21E40034C519 /* SettingViewController.swift in Sources */,
+				77DFF59B2B1E0A830034C519 /* TodayViewController.swift in Sources */,
+				77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */,
 				77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */,
 				77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */,
+				77DFF5CC2B1E210D0034C519 /* SharedSegmentedControllerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +676,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77DFF5D82B1E23D30034C519 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77DFF5D92B1E23D30034C519 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77DFF5D82B1E23D30034C519 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77DFF58B2B1E0A830034C519 /* Project object */;
 }
