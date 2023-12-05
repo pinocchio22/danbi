@@ -23,6 +23,8 @@
 		77DFF5DA2B1E23D30034C519 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77DFF5D92B1E23D30034C519 /* SnapKit */; };
 		77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */; };
 		77DFF5DF2B1E29780034C519 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */; };
+		77EA28B52B1F0D3E007E0559 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28B42B1F0D3E007E0559 /* CurrentWeather.swift */; };
+		77EA28B72B1F0D5C007E0559 /* WeeklyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28B62B1F0D5C007E0559 /* WeeklyWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		77DFF5D62B1E21E40034C519 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionView.swift; sourceTree = "<group>"; };
 		77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
+		77EA28B42B1F0D3E007E0559 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		77EA28B62B1F0D5C007E0559 /* WeeklyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				77DFF5CA2B1E20960034C519 /* Utils */,
 				77DFF5C82B1E20850034C519 /* Service */,
 				77DFF5C62B1E20570034C519 /* Shared */,
+				77EA28B32B1F0D24007E0559 /* Model */,
 				77DFF5C72B1E205F0034C519 /* Scene */,
 				77DFF5962B1E0A830034C519 /* AppDelegate.swift */,
 				77DFF5982B1E0A830034C519 /* SceneDelegate.swift */,
@@ -209,6 +214,15 @@
 				77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		77EA28B32B1F0D24007E0559 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				77EA28B42B1F0D3E007E0559 /* CurrentWeather.swift */,
+				77EA28B62B1F0D5C007E0559 /* WeeklyWeather.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,8 +362,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				77DFF5D52B1E21D00034C519 /* WeeklyViewController.swift in Sources */,
+				77EA28B52B1F0D3E007E0559 /* CurrentWeather.swift in Sources */,
 				77DFF5CE2B1E211D0034C519 /* NetworkService.swift in Sources */,
 				77DFF5D02B1E21290034C519 /* Util.swift in Sources */,
+				77EA28B72B1F0D5C007E0559 /* WeeklyWeather.swift in Sources */,
 				77DFF5D72B1E21E40034C519 /* SettingViewController.swift in Sources */,
 				77DFF59B2B1E0A830034C519 /* TodayViewController.swift in Sources */,
 				77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */,
