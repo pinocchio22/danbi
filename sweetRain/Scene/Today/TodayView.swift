@@ -11,13 +11,15 @@ class TodayView: UIView {
     // MARK: Properties
     private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
     
-    private let todayStackView: UIStackView = {
-        let view = UIStackView()
+    lazy var todayStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [titleStackView, weatherIcon, currentTempLabel, weatherLabel, maxminTempLabel])
+        view.axis = .vertical
         return view
     }()
     
-    private let titleStackView: UIStackView = {
-        let view = UIStackView()
+    lazy var titleStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [likedButton, title, searchButton])
+        view.axis = .horizontal
         return view
     }()
     
@@ -47,7 +49,23 @@ class TodayView: UIView {
     
     // devider
     
+    lazy var weatherStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [descriptionLabel, windView, humidityView, sunsetView, sunriseView])
+        view.axis = .vertical
+        return view
+    }()
+    
+    private let todayCollectionView = WeatherCollectionView(backgroundColor: .customSkyblue, cell: WeatherCollectionViewCell.self)
+    
     private let descriptionLabel = CustomLabel(text: "오늘의 날씨는?", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
+    
+    private let windView = CustomWeatherView(title: "풍속", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    
+    private let humidityView = CustomWeatherView(title: "습도", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    
+    private let sunsetView = CustomWeatherView(title: "일출시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    
+    private let sunriseView = CustomWeatherView(title: "일몰시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
     
     // MARK: LifeCycle
     init() {
