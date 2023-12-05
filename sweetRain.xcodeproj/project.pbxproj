@@ -25,6 +25,7 @@
 		77DFF5DF2B1E29780034C519 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */; };
 		77EA28B52B1F0D3E007E0559 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28B42B1F0D3E007E0559 /* CurrentWeather.swift */; };
 		77EA28B72B1F0D5C007E0559 /* WeeklyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28B62B1F0D5C007E0559 /* WeeklyWeather.swift */; };
+		77EA28B92B1F1DD4007E0559 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28B82B1F1DD4007E0559 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		77EA28B42B1F0D3E007E0559 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		77EA28B62B1F0D5C007E0559 /* WeeklyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeather.swift; sourceTree = "<group>"; };
+		77EA28B82B1F1DD4007E0559 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */,
+				77EA28B82B1F1DD4007E0559 /* UIColor+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */,
 				77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */,
 				77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */,
+				77EA28B92B1F1DD4007E0559 /* UIColor+.swift in Sources */,
 				77DFF5DF2B1E29780034C519 /* UICollectionViewCell+.swift in Sources */,
 				77DFF5CC2B1E210D0034C519 /* SharedSegmentedControllerView.swift in Sources */,
 			);
