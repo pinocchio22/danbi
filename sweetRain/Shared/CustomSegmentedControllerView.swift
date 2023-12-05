@@ -9,27 +9,30 @@ import UIKit
 
 import SnapKit
 
-class SharedSegmentedControllerView: UIView {
+class CustomSegmentedControllerView: UIView {
     // MARK: Properties
-    let segmentedControl: UISegmentedControl = {
-      let control = UISegmentedControl(items: ["firstView", "secondView"])
-      control.translatesAutoresizingMaskIntoConstraints = false
-      return control
+
+    lazy var segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: self.items)
+        control.translatesAutoresizingMaskIntoConstraints = false
+        return control
     }()
     
     let firstView: UIView = {
-      let view = UIView()
-      view.backgroundColor = .green
-      view.translatesAutoresizingMaskIntoConstraints = false
-      return view
+        let view = UIView()
+        view.backgroundColor = .green
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let secondView: UIView = {
-      let view = UIView()
-      view.backgroundColor = .yellow
-      view.translatesAutoresizingMaskIntoConstraints = false
-      return view
+        let view = UIView()
+        view.backgroundColor = .yellow
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
+    
+    var items: [String]?
     
     private func setupUI() {
         addSubview(segmentedControl)
@@ -42,14 +45,15 @@ class SharedSegmentedControllerView: UIView {
         }
         
         firstView.snp.makeConstraints {
-            $0.top.equalTo(segmentedControl.snp.bottom).inset(Util.verticalMargin)
+            $0.top.equalTo(segmentedControl.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
         }
     }
     
-    init() {
+    init(firstTitle: String, secondTitle: String) {
         super.init(frame: .zero)
+        items = [firstTitle, secondTitle]
         setupUI()
     }
 

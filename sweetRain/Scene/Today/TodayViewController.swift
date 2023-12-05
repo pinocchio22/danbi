@@ -7,11 +7,27 @@
 
 import UIKit
 
-class TodayViewController: UIViewController {
+import SnapKit
 
+class TodayViewController: UIViewController {
+    //MARK: Properties
+    private let todayView = TodayView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
+        
+        setupUI()
+    }
+    
+    private func setupUI() {
+        todayView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    private func configureUI() {
+        
     }
 }
 
