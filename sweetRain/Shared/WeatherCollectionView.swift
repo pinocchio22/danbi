@@ -8,5 +8,22 @@
 import UIKit
 
 class WeatherCollectionView: UICollectionView {
+    let flowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        return layout
+    }()
     
+    init(backgroundColor: UIColor, cell: UICollectionViewCell.Type) {
+        super.init(frame: .zero, collectionViewLayout: self.flowLayout)
+        self.isScrollEnabled = true
+        self.showsVerticalScrollIndicator = true
+        self.backgroundColor = backgroundColor
+        self.clipsToBounds = true
+        self.register(cell.self, forCellWithReuseIdentifier: cell.identifier)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

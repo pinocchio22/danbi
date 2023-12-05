@@ -22,6 +22,7 @@
 		77DFF5D72B1E21E40034C519 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5D62B1E21E40034C519 /* SettingViewController.swift */; };
 		77DFF5DA2B1E23D30034C519 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77DFF5D92B1E23D30034C519 /* SnapKit */; };
 		77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */; };
+		77DFF5DF2B1E29780034C519 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		77DFF5D42B1E21D00034C519 /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
 		77DFF5D62B1E21E40034C519 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		77DFF5DB2B1E26420034C519 /* WeatherCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionView.swift; sourceTree = "<group>"; };
+		77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		77DFF5952B1E0A830034C519 /* sweetRain */ = {
 			isa = PBXGroup;
 			children = (
+				77DFF5DD2B1E29650034C519 /* Extension */,
 				77DFF5CA2B1E20960034C519 /* Utils */,
 				77DFF5C82B1E20850034C519 /* Service */,
 				77DFF5C62B1E20570034C519 /* Shared */,
@@ -153,10 +156,9 @@
 		77DFF5C72B1E205F0034C519 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				77DFF5D32B1E218B0034C519 /* Settings */,
 				77DFF5D22B1E21710034C519 /* Weekly */,
 				77DFF5D12B1E21650034C519 /* Today */,
-				77DFF59A2B1E0A830034C519 /* TodayViewController.swift */,
+				77DFF5D32B1E218B0034C519 /* Settings */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -180,6 +182,7 @@
 		77DFF5D12B1E21650034C519 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				77DFF59A2B1E0A830034C519 /* TodayViewController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -198,6 +201,14 @@
 				77DFF5D62B1E21E40034C519 /* SettingViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		77DFF5DD2B1E29650034C519 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +355,7 @@
 				77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */,
 				77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */,
 				77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */,
+				77DFF5DF2B1E29780034C519 /* UICollectionViewCell+.swift in Sources */,
 				77DFF5CC2B1E210D0034C519 /* SharedSegmentedControllerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

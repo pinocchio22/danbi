@@ -21,7 +21,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = TodayViewController()
+        
+        let tabBarController = UITabBarController()
+        let tabs: [(root: UIViewController, icon: String)] = [
+            (WeeklyViewController(), "car"),
+            (TodayViewController(), "book"),
+            (SettingViewController(), "map")
+        ]
+        
+        tabBarController.tabBar.backgroundColor = .gray
+        tabBarController.tabBar.tintColor = .black
+        
+        tabBarController.setViewControllers(tabs.map { root, icon in
+            let navigationController = UINavigationController(rootViewController: root)
+            let tabBarItem = UITabBarItem(title: nil, image: .init(systemName: icon), selectedImage: .init(systemName: "\(icon).fill"))
+            navigationController.tabBarItem = tabBarItem
+            return navigationController
+        }, animated: false)
+        
+        window.rootViewController = tabBarController
+
         self.window = window
         window.makeKeyAndVisible()
     }
