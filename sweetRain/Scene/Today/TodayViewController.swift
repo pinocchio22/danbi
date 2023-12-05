@@ -21,6 +21,8 @@ class TodayViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.addSubview(todayView)
+        
         todayView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }

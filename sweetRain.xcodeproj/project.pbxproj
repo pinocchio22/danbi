@@ -36,6 +36,7 @@
 		77EA28D72B1F4741007E0559 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28D62B1F4741007E0559 /* UIFont+.swift */; };
 		77EA28D92B1F5235007E0559 /* CustomWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28D82B1F5235007E0559 /* CustomWeatherView.swift */; };
 		77EA28DB2B1F5845007E0559 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28DA2B1F5845007E0559 /* WeatherCollectionViewCell.swift */; };
+		77EA28DD2B1F6DEE007E0559 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EA28DC2B1F6DEE007E0559 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		77EA28D62B1F4741007E0559 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		77EA28D82B1F5235007E0559 /* CustomWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWeatherView.swift; sourceTree = "<group>"; };
 		77EA28DA2B1F5845007E0559 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		77EA28DC2B1F6DEE007E0559 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		77DFF5C72B1E205F0034C519 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				77EA28DC2B1F6DEE007E0559 /* TabBarController.swift */,
 				77DFF5D22B1E21710034C519 /* Weekly */,
 				77DFF5D12B1E21650034C519 /* Today */,
 				77DFF5D32B1E218B0034C519 /* Settings */,
@@ -425,6 +428,7 @@
 				77DFF59B2B1E0A830034C519 /* TodayViewController.swift in Sources */,
 				77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */,
 				77EA28C32B1F40AF007E0559 /* TodayView.swift in Sources */,
+				77EA28DD2B1F6DEE007E0559 /* TabBarController.swift in Sources */,
 				77EA28BB2B1F3FED007E0559 /* TodayViewModel.swift in Sources */,
 				77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */,
 				77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */,

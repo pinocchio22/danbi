@@ -22,24 +22,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
         
-        let tabBarController = UITabBarController()
-        let tabs: [(root: UIViewController, icon: String)] = [
-            (WeeklyViewController(), "car"),
-            (TodayViewController(), "book"),
-            (SettingViewController(), "map")
-        ]
+//        let tabBarController = UITabBarController()
+//        let tabs: [(root: UIViewController, icon: String)] = [
+//            (WeeklyViewController(), "car"),
+//            (TodayViewController(), "book"),
+//            (SettingViewController(), "map")
+//        ]
+//
+//        tabBarController.tabBar.backgroundColor = .gray
+//        tabBarController.tabBar.tintColor = .black
+//
+//        tabBarController.setViewControllers(tabs.map { root, icon in
+//            let navigationController = UINavigationController(rootViewController: root)
+//            let tabBarItem = UITabBarItem(title: nil, image: .init(systemName: icon), selectedImage: .init(systemName: "\(icon).fill"))
+//            navigationController.tabBarItem = tabBarItem
+//            return navigationController
+//        }, animated: false)
         
-        tabBarController.tabBar.backgroundColor = .gray
-        tabBarController.tabBar.tintColor = .black
-        
-        tabBarController.setViewControllers(tabs.map { root, icon in
-            let navigationController = UINavigationController(rootViewController: root)
-            let tabBarItem = UITabBarItem(title: nil, image: .init(systemName: icon), selectedImage: .init(systemName: "\(icon).fill"))
-            navigationController.tabBarItem = tabBarItem
-            return navigationController
-        }, animated: false)
-        
-        window.rootViewController = tabBarController
+        window.rootViewController = TabBarController()
 
         self.window = window
         window.makeKeyAndVisible()

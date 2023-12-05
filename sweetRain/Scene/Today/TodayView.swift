@@ -7,13 +7,20 @@
 
 import UIKit
 
+import SnapKit
+
 class TodayView: UIView {
     // MARK: Properties
+    private let scrollView = UIScrollView()
+    
+    private let contentView = UIView()
+    
     private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
     
     lazy var todayStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleStackView, weatherIcon, currentTempLabel, weatherLabel, maxminTempLabel])
         view.axis = .vertical
+        view.alignment = .center
         return view
     }()
     
@@ -80,9 +87,36 @@ class TodayView: UIView {
     
     private func setupUI() {
         addSubview(selectDayView)
+        selectDayView.contentView.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(todayStackView)
+        contentView.addSubview(weatherStackView)
         
         selectDayView.snp.makeConstraints {
             $0.edges.equalTo(safeAreaLayoutGuide)
+        }
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalTo(selectDayView.contentView)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
+        todayStackView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(contentView)
+        }
+        
+        weatherIcon.snp.makeConstraints {
+            $0.size.equalTo(100)
+        }
+        
+        weatherStackView.snp.makeConstraints {
+            $0.top.equalTo(todayStackView.snp.bottom)
+            $0.leading.trailing.equalTo(contentView).inset(Util.horizontalMargin)
+            $0.bottom.equalTo(contentView.snp.bottom)
         }
     }
 }

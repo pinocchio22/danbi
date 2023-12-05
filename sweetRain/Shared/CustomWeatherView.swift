@@ -29,9 +29,12 @@ class CustomWeatherView: UIView {
     // MARK: Method
     private func setupUI() {
         guard let titleLabel = titleLabel else { return }
+        
+        addSubview(titleLabel)
+        
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(Util.verticalMargin)
-            $0.leading.equalToSuperview().inset(Util.horizontalMargin)
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(Util.verticalMargin)
+            $0.leading.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
         }
         
         self.snp.makeConstraints {

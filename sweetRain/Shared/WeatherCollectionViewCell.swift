@@ -37,6 +37,10 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     // MARK: Method
 
     private func setupUI() {
+        addSubview(timeLabel)
+        addSubview(weatherIcon)
+        addSubview(tempLabel)
+        
         timeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(Util.verticalMargin)
             $0.leading.trailing.equalToSuperview().inset(Util.verticalMargin)

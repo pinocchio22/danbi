@@ -18,33 +18,26 @@ class CustomSegmentedControllerView: UIView {
         return control
     }()
     
-    let firstView: UIView = {
+    let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .green
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    let secondView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .yellow
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+
     
     var items: [String]?
     
     private func setupUI() {
         addSubview(segmentedControl)
-        addSubview(firstView)
-        addSubview(secondView)
+        addSubview(contentView)
         
         segmentedControl.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).inset(Util.verticalMargin)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
         }
         
-        firstView.snp.makeConstraints {
+        contentView.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
