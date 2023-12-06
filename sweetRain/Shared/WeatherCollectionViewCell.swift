@@ -43,23 +43,18 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         
         timeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(Util.verticalMargin)
-            $0.leading.trailing.equalToSuperview().inset(Util.verticalMargin)
+            $0.centerX.equalToSuperview()
         }
         
         weatherIcon.snp.makeConstraints {
-            $0.top.equalTo(timeLabel.snp.bottom).inset(Util.verticalMargin)
-            $0.leading.trailing.equalToSuperview().inset(Util.horizontalMargin)
+            $0.top.equalTo(timeLabel.snp.bottom).inset(-Util.verticalMargin)
+            $0.centerX.equalToSuperview()
         }
         
         tempLabel.snp.makeConstraints {
-            $0.top.equalTo(weatherIcon.snp.bottom).inset(Util.verticalMargin)
-            $0.leading.trailing.equalToSuperview().inset(Util.horizontalMargin)
+            $0.top.equalTo(weatherIcon.snp.bottom).inset(-Util.verticalMargin)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(Util.verticalMargin)
-        }
-        
-        self.snp.makeConstraints {
-            $0.width.equalTo(60)
-            $0.height.equalTo(100)
         }
     }
     

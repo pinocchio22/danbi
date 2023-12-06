@@ -11,7 +11,11 @@ import SnapKit
 
 class TodayView: UIView {
     // MARK: Properties
-    private let scrollView = UIScrollView()
+    private let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
     
     private let contentView = UIView()
     
@@ -20,6 +24,7 @@ class TodayView: UIView {
     lazy var todayStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleStackView, weatherIcon, currentTempLabel, weatherLabel, maxminTempLabel])
         view.axis = .vertical
+        view.spacing = Util.verticalMargin
         view.alignment = .center
         return view
     }()
@@ -44,7 +49,7 @@ class TodayView: UIView {
     
     private let weatherIcon: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "photo")
+        view.image = UIImage(systemName: "sun.max")
         return view
     }()
     
@@ -57,12 +62,13 @@ class TodayView: UIView {
     // devider
     
     lazy var weatherStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [descriptionLabel, windView, humidityView, sunsetView, sunriseView])
+        let view = UIStackView(arrangedSubviews: [descriptionLabel, todayCollectionView, windView, humidityView, sunsetView, sunriseView])
+        view.spacing = Util.verticalMargin
         view.axis = .vertical
         return view
     }()
     
-    private let todayCollectionView = WeatherCollectionView(backgroundColor: .customSkyblue, cell: WeatherCollectionViewCell.self)
+    let todayCollectionView = WeatherCollectionView(backgroundColor: .customSkyblue, cell: WeatherCollectionViewCell.self)
     
     private let descriptionLabel = CustomLabel(text: "오늘의 날씨는?", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
     
@@ -107,6 +113,10 @@ class TodayView: UIView {
         
         todayStackView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(contentView)
+        }
+        
+        todayCollectionView.snp.makeConstraints {
+            $0.height.equalTo(100)
         }
         
         weatherIcon.snp.makeConstraints {

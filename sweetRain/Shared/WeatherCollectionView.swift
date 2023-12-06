@@ -10,7 +10,7 @@ import UIKit
 class WeatherCollectionView: UICollectionView {
     let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         return layout
     }()
     
@@ -20,6 +20,8 @@ class WeatherCollectionView: UICollectionView {
         self.showsVerticalScrollIndicator = true
         self.backgroundColor = backgroundColor
         self.clipsToBounds = true
+        self.showsHorizontalScrollIndicator = false
+        self.layer.cornerRadius = Util.largeCorner
         self.register(cell.self, forCellWithReuseIdentifier: cell.identifier)
     }
 

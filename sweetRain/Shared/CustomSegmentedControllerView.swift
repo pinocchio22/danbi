@@ -14,15 +14,15 @@ class CustomSegmentedControllerView: UIView {
 
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: self.items)
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.layer.cornerRadius = Util.largeCorner
+        control.selectedSegmentTintColor = .customSkyblue
+        control.backgroundColor = .customDarkblue
+        control.selectedSegmentIndex = 0
         return control
     }()
 
     let contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
         return view
     }()
 
@@ -33,7 +33,7 @@ class CustomSegmentedControllerView: UIView {
         addSubview(contentView)
 
         segmentedControl.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).inset(Util.verticalMargin)
+            $0.top.equalTo(self.safeAreaLayoutGuide)
             $0.centerX.equalTo(self)
             $0.width.equalTo(Util.mainWidth * 0.7)
             $0.height.equalTo(40)
@@ -42,7 +42,7 @@ class CustomSegmentedControllerView: UIView {
         contentView.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
 

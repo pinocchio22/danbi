@@ -19,6 +19,8 @@ class CustomWeatherView: UIView {
         super.init(frame: .zero)
         self.titleLabel = CustomLabel(text: title, textColor: textColor, fontSize: fontSize, fontWeight: fontWeight)
         self.height = viewHeight
+        self.backgroundColor = .customSkyblue
+        self.layer.cornerRadius = Util.largeCorner
         setupUI()
     }
 
