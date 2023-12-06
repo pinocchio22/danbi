@@ -20,7 +20,7 @@ class WeeklyView: UIView {
         return layout
     }()
     
-    lazy var collectionView: UICollectionView = {
+    lazy var weeklyCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
         view.isScrollEnabled = true
         view.showsVerticalScrollIndicator = false
@@ -46,13 +46,13 @@ class WeeklyView: UIView {
 
     private func setupUI() {
         addSubview(pageTitleLabel)
-        addSubview(collectionView)
+        addSubview(weeklyCollectionView)
         
         pageTitleLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints {
+        weeklyCollectionView.snp.makeConstraints {
             $0.top.equalTo(pageTitleLabel.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.bottom.equalToSuperview()
         }

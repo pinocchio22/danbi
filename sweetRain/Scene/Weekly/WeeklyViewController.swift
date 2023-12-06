@@ -36,8 +36,8 @@ class WeeklyViewController: UIViewController {
     }
     
     private func configureUI() {
-        WeeklyCollectionView.collectionView.delegate = self
-        WeeklyCollectionView.collectionView.dataSource = self
+        WeeklyCollectionView.weeklyCollectionView.delegate = self
+        WeeklyCollectionView.weeklyCollectionView.dataSource = self
         
         navigationController?.navigationBar.isHidden = true
     }

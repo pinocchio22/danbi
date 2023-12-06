@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
         let tabs: [(root: UIViewController, icon: String)] = [
             (WeeklyViewController(), "car"),
             (TodayViewController(), "book"),
-            (SettingViewController(), "map")
+            (SearchViewController(), "map")
         ]
         
         self.tabBar.backgroundColor = .gray
