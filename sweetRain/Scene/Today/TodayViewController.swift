@@ -32,6 +32,7 @@ class TodayViewController: UIViewController {
     private func configureUI() {
         todayView.todayCollectionView.delegate = self
         todayView.todayCollectionView.dataSource = self
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
 

@@ -17,7 +17,6 @@ class WeatherCollectionView: UICollectionView {
     init(backgroundColor: UIColor, cell: UICollectionViewCell.Type) {
         super.init(frame: .zero, collectionViewLayout: self.flowLayout)
         self.isScrollEnabled = true
-        self.showsVerticalScrollIndicator = true
         self.backgroundColor = backgroundColor
         self.clipsToBounds = true
         self.showsHorizontalScrollIndicator = false
@@ -25,6 +24,7 @@ class WeatherCollectionView: UICollectionView {
         self.register(cell.self, forCellWithReuseIdentifier: cell.identifier)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

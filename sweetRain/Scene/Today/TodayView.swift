@@ -11,6 +11,7 @@ import SnapKit
 
 class TodayView: UIView {
     // MARK: Properties
+
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
@@ -81,6 +82,7 @@ class TodayView: UIView {
     private let sunriseView = CustomWeatherView(title: "일몰시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
     
     // MARK: LifeCycle
+
     init() {
         super.init(frame: .zero)
         setupUI()
