@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		778B9B102B2302EE00E0DA43 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778B9B0F2B2302EE00E0DA43 /* Observable.swift */; };
+		778B9B122B233CCC00E0DA43 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778B9B112B233CCC00E0DA43 /* Date+.swift */; };
 		77C3527A2B203B7F00B2A917 /* D2Coding-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77C352782B203B7F00B2A917 /* D2Coding-Regular.ttf */; };
 		77C3527B2B203B7F00B2A917 /* D2Coding-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77C352792B203B7F00B2A917 /* D2Coding-Bold.ttf */; };
 		77C3527D2B20476200B2A917 /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C3527C2B20476200B2A917 /* WeeklyView.swift */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		778B9B0F2B2302EE00E0DA43 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		778B9B112B233CCC00E0DA43 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		77C352782B203B7F00B2A917 /* D2Coding-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D2Coding-Regular.ttf"; sourceTree = "<group>"; };
 		77C352792B203B7F00B2A917 /* D2Coding-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D2Coding-Bold.ttf"; sourceTree = "<group>"; };
 		77C3527C2B20476200B2A917 /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				77DFF5DE2B1E29780034C519 /* UICollectionViewCell+.swift */,
 				77EA28B82B1F1DD4007E0559 /* UIColor+.swift */,
 				77EA28D62B1F4741007E0559 /* UIFont+.swift */,
+				778B9B112B233CCC00E0DA43 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				77EA28BB2B1F3FED007E0559 /* TodayViewModel.swift in Sources */,
 				77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */,
 				77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */,
+				778B9B122B233CCC00E0DA43 /* Date+.swift in Sources */,
 				77EA28BD2B1F3FF7007E0559 /* WeeklyViewModel.swift in Sources */,
 				77C352872B20B4B000B2A917 /* SearchViewModel.swift in Sources */,
 				77C352892B20BD2E00B2A917 /* SearchCollectionViewCell.swift in Sources */,

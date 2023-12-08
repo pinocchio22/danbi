@@ -23,7 +23,7 @@ class TodayView: UIView {
     private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
     
     lazy var todayStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [titleStackView, weatherIcon, currentTempLabel, weatherLabel, maxminTempLabel])
+        let view = UIStackView(arrangedSubviews: [titleStackView, weatherIcon, currentTempLabel, timeLabel, maxminTempLabel])
         view.axis = .vertical
         view.spacing = Util.verticalMargin
         view.alignment = .center
@@ -31,7 +31,7 @@ class TodayView: UIView {
     }()
     
     lazy var titleStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [likedButton, title, searchButton])
+        let view = UIStackView(arrangedSubviews: [likedButton, titleLabel, searchButton])
         view.axis = .horizontal
         return view
     }()
@@ -41,7 +41,7 @@ class TodayView: UIView {
         return btn
     }()
     
-    private let title = CustomLabel(text: "지역", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
+    private let titleLabel = CustomLabel(text: "지역", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
     
     private let searchButton: UIButton = {
         let btn = UIButton()
@@ -56,7 +56,7 @@ class TodayView: UIView {
     
     private let currentTempLabel = CustomLabel(text: "현재온도", textColor: .black, fontSize: Util.largeFont, fontWeight: .bold)
     
-    private let weatherLabel = CustomLabel(text: "맑음 / 흐림 / 눈", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
+    private let timeLabel = CustomLabel(text: "시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .regular)
     
     private let maxminTempLabel = CustomLabel(text: "최고 / 최저", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
     
@@ -130,5 +130,14 @@ class TodayView: UIView {
             $0.leading.trailing.equalTo(contentView).inset(Util.horizontalMargin)
             $0.bottom.equalTo(contentView.snp.bottom)
         }
+    }
+    
+    func updateUI(title: String, Image: Data, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String) {
+        titleLabel.text = title
+        weatherIcon.image = UIImage(data: Image)
+        currentTempLabel.text = currentTemp
+        timeLabel.text = "\(time) 기준"
+        maxminTempLabel.text = "최고:\(maxTemp) 최저:\(minTemp)"
+        descriptionLabel.text = description
     }
 }

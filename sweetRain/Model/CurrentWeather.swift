@@ -21,7 +21,7 @@ struct CurrentWeather {
     let windSpeed: Double
     let sunRise: Int
     let sunSet: Int
-    let icon: String
+    var icon: Data?
     let description: String
 }
 

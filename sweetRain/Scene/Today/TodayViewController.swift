@@ -10,15 +10,20 @@ import UIKit
 import SnapKit
 
 class TodayViewController: UIViewController {
-    //MARK: Properties
+    // MARK: Properties
+
+    private let viewModel = TodayViewModel()
+    
     private let todayView = TodayView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
         
         setupUI()
         configureUI()
+        
+        getCurrentWeather()
     }
     
     private func setupUI() {
@@ -32,7 +37,17 @@ class TodayViewController: UIViewController {
     private func configureUI() {
         todayView.todayCollectionView.delegate = self
         todayView.todayCollectionView.dataSource = self
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func getCurrentWeather() {
+        viewModel.getCurrentWeather {
+            self.viewModel.currentWeather?.bind { weather in
+                DispatchQueue.main.async {
+                    self.todayView.updateUI(title: weather.location, Image: weather.icon ?? Data(), currentTemp: String(weather.currentTemp), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp), minTemp: String(weather.minTemp))
+                }
+            }
+        }
     }
 }
 

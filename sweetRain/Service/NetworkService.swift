@@ -11,13 +11,12 @@ import SnapKit
 import Alamofire
 
 class NetworkService {
-    static let networkService = NetworkService()
-    
     func getCurrentWeather(lat: Double, lon: Double, completion: @escaping (TodayWeather?) -> Void) {
-        let apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(Key.apiKey.rawValue)&celsius&lang=kr"
+        let apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(Key.apiKey.rawValue)&units=metric&lang=kr"
         AF.request(apiUrl).responseDecodable(of: TodayWeather.self) { response in
             switch response.result {
             case .success(let currentWeather):
+                print(currentWeather)
                 completion(currentWeather)
             case .failure(let error):
                 print("API 요청 실패: \(error)")
@@ -27,10 +26,11 @@ class NetworkService {
     }
     
     func getCurrentWeather(cityName: String, completion: @escaping (TodayWeather?) -> Void) {
-        let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(Key.apiKey.rawValue)&celsius&lang=kr"
+        let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(Key.apiKey.rawValue)&&units=metric&lang=kr"
         AF.request(apiUrl).responseDecodable(of: TodayWeather.self) { response in
             switch response.result {
             case .success(let currentWeather):
+                print(currentWeather)
                 completion(currentWeather)
             case .failure(let error):
                 print("API 요청 실패: \(error)")
