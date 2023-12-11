@@ -21,7 +21,7 @@ struct CurrentWeather {
     let windSpeed: Double
     let sunRise: Int
     let sunSet: Int
-    var icon: Data?
+    var icon: String?
     let description: String
 }
 
@@ -34,7 +34,7 @@ struct TodayWeather: Codable {
     let visibility: Int
     let wind: Wind
     let clouds: Clouds
-    let dt: Int
+    let dt: Double
     let sys: Sys
     let timezone, id: Int
     let name: String

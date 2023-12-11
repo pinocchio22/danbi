@@ -20,7 +20,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    private let tempLabel = CustomLabel(text: "온도", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
+    private let tempLabel = CustomLabel(text: "온도", textColor: .black, fontSize: Util.smallFont, fontWeight: .regular)
     
     // MARK: LifeCycle
 
@@ -48,6 +48,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         
         weatherIcon.snp.makeConstraints {
             $0.top.equalTo(timeLabel.snp.bottom).inset(-Util.verticalMargin)
+            $0.size.equalTo(30)
             $0.centerX.equalToSuperview()
         }
         
@@ -60,6 +61,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
     func bind(time: String, icon: String, temp: String) {
         timeLabel.text = time
-        tempLabel.text = temp
+        weatherIcon.setIcon(icon: icon)
+        tempLabel.text = "\(temp)℃"
     }
 }

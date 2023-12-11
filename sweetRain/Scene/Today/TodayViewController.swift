@@ -22,8 +22,9 @@ class TodayViewController: UIViewController {
         
         setupUI()
         configureUI()
-        
+        bind()
         getCurrentWeather()
+        getHourlyWeather()
     }
     
     private func setupUI() {
@@ -41,23 +42,34 @@ class TodayViewController: UIViewController {
     }
     
     private func getCurrentWeather() {
-        viewModel.getCurrentWeather {
-            self.viewModel.currentWeather?.bind { weather in
-                DispatchQueue.main.async {
-                    self.todayView.updateUI(title: weather.location, Image: weather.icon ?? Data(), currentTemp: String(weather.currentTemp), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp), minTemp: String(weather.minTemp))
-                }
-            }
+        viewModel.getCurrentWeather()
+    }
+    
+    private func getHourlyWeather() {
+        viewModel.getHourlyWeather(type: .today)
+    }
+    
+    private func bind() {
+        self.viewModel.currentWeather.bind { weather in
+                self.todayView.updateUI(title: weather?.location ?? "", icon: weather?.icon ?? "", currentTemp: String(weather?.currentTemp ?? 0.0), time: weather?.timeStamp ?? "", description: weather?.description ?? "", maxTemp: String(weather?.maxTemp ?? 0.0), minTemp: String(weather?.minTemp ?? 0.0))
+        }
+        
+        self.viewModel.hourlyWeather.bind { weather in
+            self.todayView.todayCollectionView.reloadData()
         }
     }
 }
 
 extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return viewModel.hourlyWeather.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.identifier, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
+        if let item = viewModel.hourlyWeather.value[indexPath.row] {
+            cell.bind(time: item.timeStamp , icon: item.icon , temp: String(item.currentTemp))
+        }
         return cell
     }
     

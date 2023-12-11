@@ -16,7 +16,6 @@ class NetworkService {
         AF.request(apiUrl).responseDecodable(of: TodayWeather.self) { response in
             switch response.result {
             case .success(let currentWeather):
-                print(currentWeather)
                 completion(currentWeather)
             case .failure(let error):
                 print("API 요청 실패: \(error)")
@@ -26,11 +25,10 @@ class NetworkService {
     }
     
     func getCurrentWeather(cityName: String, completion: @escaping (TodayWeather?) -> Void) {
-        let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(Key.apiKey.rawValue)&&units=metric&lang=kr"
+        let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(Key.apiKey.rawValue)&units=metric&lang=kr"
         AF.request(apiUrl).responseDecodable(of: TodayWeather.self) { response in
             switch response.result {
             case .success(let currentWeather):
-                print(currentWeather)
                 completion(currentWeather)
             case .failure(let error):
                 print("API 요청 실패: \(error)")
@@ -39,14 +37,15 @@ class NetworkService {
         }
     }
     
-    func getWeeklyWeather(lat: Double, lon: Double, completion: @escaping ([WeeklyWeather]?) -> Void) {
-        let apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(Key.apiKey.rawValue)&celsius&lang=kr"
+    func getWeeklyWeather(lat: Double, lon: Double, completion: @escaping ([WeekWeather]?) -> Void) {
+        let apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(Key.apiKey.rawValue)&units=metric&lang=kr"
         
-        var weatherList = [WeeklyWeather]()
+        var weatherList = [WeekWeather]()
         
         AF.request(apiUrl).responseDecodable(of: WeekWeather.self) { response in
             switch response.result {
-            case .success(let weeklyWeather):
+            case .success(let weekWeather):
+                weatherList.append(weekWeather)
                 completion(weatherList)
             case .failure(let error):
                 print("API 요청 실패: \(error)")
@@ -55,17 +54,16 @@ class NetworkService {
         }
     }
     
-    func getWeeklyWeather(cityName: String, completion: @escaping ([WeeklyWeather]?) -> Void) {
-        let apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=\(cityName)&appid=\(Key.apiKey.rawValue)&celsius&lang=kr"
+    func getWeeklyWeather(cityName: String, completion: @escaping (WeekWeather?) -> Void) {
+        let apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=\(cityName)&appid=\(Key.apiKey.rawValue)&units=metric&lang=kr"
         
-        var weatherList = [WeeklyWeather]()
-        // API 요청 및 디코딩
+        var weatherList = [WeekWeather]()
         AF.request(apiUrl).responseDecodable(of: WeekWeather.self) { response in
             switch response.result {
-            case .success(let weeklyWeather):
-                completion(weatherList)
-            case .failure(let error):
-                print("API 요청 실패: \(error)")
+            case .success(let weekWeather):
+                completion(weekWeather)
+            case .failure(_):
+                print("API 요청 실패")
                 completion(nil)
             }
         }

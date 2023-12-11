@@ -132,12 +132,14 @@ class TodayView: UIView {
         }
     }
     
-    func updateUI(title: String, Image: Data, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String) {
+    func updateUI(title: String, icon: String, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String) {
+        currentTempLabel.text = "\(currentTemp)℃"
         titleLabel.text = title
-        weatherIcon.image = UIImage(data: Image)
-        currentTempLabel.text = currentTemp
+        weatherIcon.setIcon(icon: icon)
         timeLabel.text = "\(time) 기준"
-        maxminTempLabel.text = "최고:\(maxTemp) 최저:\(minTemp)"
+        maxminTempLabel.text = "최고:\(maxTemp)℃ / 최저:\(minTemp)℃"
         descriptionLabel.text = description
+        
+//        wind
     }
 }

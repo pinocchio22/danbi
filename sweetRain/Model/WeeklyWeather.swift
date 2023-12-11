@@ -8,7 +8,6 @@
 import Foundation
 
 struct WeeklyWeather {
-    let id: Int
     let currentTemp: Double
     let maxTemp: Double
     let minTemp: Double
@@ -42,7 +41,7 @@ struct WeekWeather: Codable {
     
     // MARK: - List
     struct List: Codable {
-        let dt: Int
+        let dt: Double
         let main: MainClass
         let weather: [Weather]
         let clouds: Clouds
@@ -105,24 +104,9 @@ struct WeekWeather: Codable {
         // MARK: - Weather
         struct Weather: Codable {
             let id: Int
-            let main: MainEnum
-            let description: Description
+            let main: String
+            let description: String
             let icon: String
-            
-            enum Description: String, Codable {
-                case 구름조금 = "구름조금"
-                case 맑음 = "맑음"
-                case 실비 = "실 비"
-                case 약간의구름이낀하늘 = "약간의 구름이 낀 하늘"
-                case 온흐림 = "온흐림"
-                case 튼구름 = "튼구름"
-            }
-            
-            enum MainEnum: String, Codable {
-                case clear = "Clear"
-                case clouds = "Clouds"
-                case rain = "Rain"
-            }
         }
         
         // MARK: - Wind
