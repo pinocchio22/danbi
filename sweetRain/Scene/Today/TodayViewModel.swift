@@ -10,7 +10,8 @@ import Foundation
 class TodayViewModel {
     private let networkService = NetworkService()
     var currentWeather: Observable<CurrentWeather?> = Observable(nil)
-    var hourlyWeather: Observable<[WeeklyWeather?]> = Observable([])
+    var hourlyWeather: Observable<[CurrentWeather?]> = Observable([])
+    var selectedIndex: Observable<Bool> = Observable(false)
 
     func getCurrentWeather() {
         networkService.getCurrentWeather(cityName: "Uijeongbu-si") { weather in
@@ -37,28 +38,46 @@ class TodayViewModel {
         }
     }
 
-    func getHourlyWeather(type: hourlyWeather) {
-        networkService.getWeeklyWeather(cityName: "Uijeongbu-si") { weather in
-            if let weather = weather {
-                let newWeather = Observable(weather).value
-                for i in 0...8 {
-                    let item = newWeather.list[i]
-                    self.hourlyWeather.value.append(WeeklyWeather(
-                        currentTemp: item.main.temp.setRounded(),
-                        maxTemp: item.main.tempMax.setRounded(),
-                        minTemp: item.main.tempMin.setRounded(),
-                        feelTemp: item.main.feelsLike.setRounded(),
-                        timeStamp: item.dt.unixToDate(),
-                        discription: item.weather.first?.description ?? "",
-                        icon: item.weather.first?.icon ?? ""
-                    ))
+    func getHourlyWeather(type: WeatherViewType) {
+        switch type {
+        case .today:
+            networkService.getWeeklyWeather(cityName: "Uijeongbu-si") { weather in
+                self.hourlyWeather.value = []
+                if let weather = weather {
+                    let newWeather = Observable(weather).value
+                    newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
+                        self.setCurrentWeather(newWeather: newWeather, weather: item)
+                    }
+                }
+            }
+        case .tomorrow:
+            networkService.getWeeklyWeather(cityName: "Uijeongbu-si") { weather in
+                self.hourlyWeather.value = []
+                if let weather = weather {
+                    let newWeather = Observable(weather).value
+                    newWeather.list.filter{ Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
+                        self.setCurrentWeather(newWeather: newWeather, weather: item)
+                    }
                 }
             }
         }
     }
-
-    enum hourlyWeather {
-        case today
-        case tomorrow
+    
+    private func setCurrentWeather(newWeather: WeekWeather, weather: WeekWeather.List) {
+        self.hourlyWeather.value.append(CurrentWeather(
+            id: newWeather.city.id,
+            location: newWeather.city.name,
+            lat: newWeather.city.coord.lat,
+            lon: newWeather.city.coord.lon,
+            currentTemp: weather.main.temp.setRounded(),
+            maxTemp: weather.main.tempMax.setRounded(),
+            minTemp: weather.main.tempMin.setRounded(),
+            feelTemp: weather.main.feelsLike.setRounded(),
+            timeStamp: weather.dt.unixToDate(),
+            humidity: weather.main.humidity,
+            windSpeed: weather.wind.speed,
+            icon: weather.weather.first?.icon,
+            description: weather.weather.first?.description ?? "날씨 정보 없음"
+        ))
     }
 }

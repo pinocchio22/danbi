@@ -33,6 +33,11 @@ extension Date {
             if let year = dateComponents.year {
                 return year
             }
+            
+        case .hour:
+            if let hour = dateComponents.hour {
+                return hour
+            }
         default: return 0
         }
 

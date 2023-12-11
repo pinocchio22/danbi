@@ -11,7 +11,7 @@ extension Double {
     func unixToDate() -> String {
         let date = Date(timeIntervalSince1970: self)
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "HH시"
         return formatter.string(from: date)
     }

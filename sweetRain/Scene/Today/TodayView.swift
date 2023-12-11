@@ -11,7 +11,9 @@ import SnapKit
 
 class TodayView: UIView {
     // MARK: Properties
-
+    
+//    private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
+    
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
@@ -19,8 +21,6 @@ class TodayView: UIView {
     }()
     
     private let contentView = UIView()
-    
-    private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
     
     lazy var todayStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleStackView, weatherIcon, currentTempLabel, timeLabel, maxminTempLabel])
@@ -94,18 +94,18 @@ class TodayView: UIView {
     }
     
     private func setupUI() {
-        addSubview(selectDayView)
-        selectDayView.contentView.addSubview(scrollView)
+//        addSubview(selectDayView)
+//        selectDayView.contentView.addSubview(scrollView)
+//        scrollView.addSubview(contentView)
+//        contentView.addSubview(todayStackView)
+//        contentView.addSubview(weatherStackView)
+        addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(todayStackView)
         contentView.addSubview(weatherStackView)
         
-        selectDayView.snp.makeConstraints {
-            $0.edges.equalTo(safeAreaLayoutGuide)
-        }
-        
         scrollView.snp.makeConstraints {
-            $0.edges.equalTo(selectDayView.contentView)
+            $0.edges.equalTo(safeAreaLayoutGuide)
         }
         
         contentView.snp.makeConstraints {
@@ -139,7 +139,5 @@ class TodayView: UIView {
         timeLabel.text = "\(time) 기준"
         maxminTempLabel.text = "최고:\(maxTemp)℃ / 최저:\(minTemp)℃"
         descriptionLabel.text = description
-        
-        windView
     }
 }

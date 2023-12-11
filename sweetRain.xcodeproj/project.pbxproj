@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770D4AD92B273AB200754F80 /* TomorrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D4AD82B273AB100754F80 /* TomorrowView.swift */; };
 		778B9B102B2302EE00E0DA43 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778B9B0F2B2302EE00E0DA43 /* Observable.swift */; };
 		778B9B122B233CCC00E0DA43 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778B9B112B233CCC00E0DA43 /* Date+.swift */; };
 		77C3527A2B203B7F00B2A917 /* D2Coding-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77C352782B203B7F00B2A917 /* D2Coding-Regular.ttf */; };
@@ -70,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		770D4AD82B273AB100754F80 /* TomorrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowView.swift; sourceTree = "<group>"; };
 		778B9B0F2B2302EE00E0DA43 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		778B9B112B233CCC00E0DA43 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		77C352782B203B7F00B2A917 /* D2Coding-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D2Coding-Regular.ttf"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				77DFF59A2B1E0A830034C519 /* TodayViewController.swift */,
 				77EA28BA2B1F3FEC007E0559 /* TodayViewModel.swift */,
 				77EA28C22B1F40AF007E0559 /* TodayView.swift */,
+				770D4AD82B273AB100754F80 /* TomorrowView.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				77DFF59B2B1E0A830034C519 /* TodayViewController.swift in Sources */,
 				77DFF5DC2B1E26420034C519 /* WeatherCollectionView.swift in Sources */,
 				77C352832B20B03200B2A917 /* SearchViewController.swift in Sources */,
+				770D4AD92B273AB200754F80 /* TomorrowView.swift in Sources */,
 				77EA28C32B1F40AF007E0559 /* TodayView.swift in Sources */,
 				77EA28DD2B1F6DEE007E0559 /* TabBarController.swift in Sources */,
 				77EA28BB2B1F3FED007E0559 /* TodayViewModel.swift in Sources */,

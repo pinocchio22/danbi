@@ -13,14 +13,14 @@ struct CurrentWeather {
     let lat: Double
     let lon: Double
     let currentTemp: Double
-    let maxTemp: Double
+    var maxTemp: Double
     let minTemp: Double
     let feelTemp: Double
     let timeStamp: String
     let humidity: Int
     let windSpeed: Double
-    let sunRise: Int
-    let sunSet: Int
+    var sunRise: Int?
+    var sunSet: Int?
     var icon: String?
     let description: String
 }

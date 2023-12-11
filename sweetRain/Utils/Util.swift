@@ -21,3 +21,8 @@ class Util {
     static let mainWidth = UIScreen.main.bounds.size.width
     static let mainHeight = UIScreen.main.bounds.size.height
 }
+
+enum WeatherViewType {
+    case today
+    case tomorrow
+}
