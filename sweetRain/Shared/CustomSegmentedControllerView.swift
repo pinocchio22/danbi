@@ -14,9 +14,13 @@ class CustomSegmentedControllerView: UIView {
 
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: self.items)
+        let font = UIFont.designHouse(size: Util.mediumFont, weight: .bold)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
         control.selectedSegmentTintColor = .customSkyblue
         control.backgroundColor = .customDarkblue
         control.selectedSegmentIndex = 0
+        control.setTitleTextAttributes(attributes, for: .normal)
+        control.setTitleTextAttributes(attributes, for: .selected)
         return control
     }()
 

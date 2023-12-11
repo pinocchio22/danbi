@@ -12,7 +12,7 @@ class CustomLabel: UILabel {
         super.init(frame: .zero)
         self.text = text
         self.textColor = textColor
-        self.font = UIFont.d2cording(size: fontSize, weight: fontWeight)
+        self.font = UIFont.designHouse(size: fontSize, weight: fontWeight)
     }
 
     @available(*, unavailable)

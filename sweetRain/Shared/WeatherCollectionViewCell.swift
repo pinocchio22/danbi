@@ -12,7 +12,7 @@ import SnapKit
 class WeatherCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
 
-    private let timeLabel = CustomLabel(text: "시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .regular)
+    private let timeLabel = CustomLabel(text: "시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold)
     
     private let weatherIcon: UIImageView = {
         let view = UIImageView()
@@ -20,7 +20,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    private let tempLabel = CustomLabel(text: "온도", textColor: .black, fontSize: Util.smallFont, fontWeight: .regular)
+    private let tempLabel = CustomLabel(text: "온도", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold)
     
     // MARK: LifeCycle
 
@@ -48,7 +48,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         
         weatherIcon.snp.makeConstraints {
             $0.top.equalTo(timeLabel.snp.bottom).inset(-Util.verticalMargin)
-            $0.size.equalTo(30)
+            $0.size.equalTo(40)
             $0.centerX.equalToSuperview()
         }
         

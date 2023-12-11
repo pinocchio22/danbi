@@ -56,7 +56,7 @@ class TodayView: UIView {
     
     private let currentTempLabel = CustomLabel(text: "현재온도", textColor: .black, fontSize: Util.largeFont, fontWeight: .bold)
     
-    private let timeLabel = CustomLabel(text: "시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .regular)
+    private let timeLabel = CustomLabel(text: "시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold)
     
     private let maxminTempLabel = CustomLabel(text: "최고 / 최저", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
     
@@ -140,6 +140,6 @@ class TodayView: UIView {
         maxminTempLabel.text = "최고:\(maxTemp)℃ / 최저:\(minTemp)℃"
         descriptionLabel.text = description
         
-//        wind
+        windView
     }
 }

@@ -4,8 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>D2Coding-Regular</string>
-		<string>D2Coding-Bold</string>
+		<string>D2Coding-Regular.ttf</string>
+		<string>D2Coding-Bold.ttf</string>
+		<string>designhouseLight.ttf</string>
+		<string>designhouseBold.ttf</string>
+		<string>Jua.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

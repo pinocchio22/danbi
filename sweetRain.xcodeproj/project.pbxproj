@@ -47,6 +47,9 @@
 		77ECF3E72B21FCAA004C4D73 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 77ECF3E62B21FCAA004C4D73 /* Alamofire */; };
 		77FBAB932B26D93F00095C9C /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FBAB922B26D93F00095C9C /* UIImageView+.swift */; };
 		77FBAB952B27054F00095C9C /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FBAB942B27054F00095C9C /* Double+.swift */; };
+		77FBAB9B2B2736E900095C9C /* designhouseLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77FBAB982B2736E900095C9C /* designhouseLight.ttf */; };
+		77FBAB9C2B2736E900095C9C /* designhouseBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77FBAB992B2736E900095C9C /* designhouseBold.ttf */; };
+		77FBAB9D2B2736E900095C9C /* Jua.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77FBAB9A2B2736E900095C9C /* Jua.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,9 @@
 		77ECF3E32B21FC0D004C4D73 /* KEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEY.swift; sourceTree = "<group>"; };
 		77FBAB922B26D93F00095C9C /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		77FBAB942B27054F00095C9C /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		77FBAB982B2736E900095C9C /* designhouseLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = designhouseLight.ttf; path = ../../../../../Downloads/designhouseLight.ttf; sourceTree = "<group>"; };
+		77FBAB992B2736E900095C9C /* designhouseBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = designhouseBold.ttf; path = ../../../../../Downloads/designhouseBold.ttf; sourceTree = "<group>"; };
+		77FBAB9A2B2736E900095C9C /* Jua.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Jua.ttf; path = ../../../../../Downloads/Jua.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +293,9 @@
 		77EA28C62B1F45BD007E0559 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				77FBAB992B2736E900095C9C /* designhouseBold.ttf */,
+				77FBAB982B2736E900095C9C /* designhouseLight.ttf */,
+				77FBAB9A2B2736E900095C9C /* Jua.ttf */,
 				77C352792B203B7F00B2A917 /* D2Coding-Bold.ttf */,
 				77C352782B203B7F00B2A917 /* D2Coding-Regular.ttf */,
 			);
@@ -430,6 +439,9 @@
 				77C3527B2B203B7F00B2A917 /* D2Coding-Bold.ttf in Resources */,
 				77C3527A2B203B7F00B2A917 /* D2Coding-Regular.ttf in Resources */,
 				77DFF5A02B1E0A840034C519 /* Assets.xcassets in Resources */,
+				77FBAB9C2B2736E900095C9C /* designhouseBold.ttf in Resources */,
+				77FBAB9D2B2736E900095C9C /* Jua.ttf in Resources */,
+				77FBAB9B2B2736E900095C9C /* designhouseLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,19 +8,26 @@
 import UIKit
 
 extension UIFont {
-    static func d2cording(size fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
-        let fontName = "D2Coding"
+    static func designHouse(size fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+        var fontName: String
 
-        var weightString: String
+//        switch weight {
+//        case .bold:
+//            fontName = "D2CodingligatureBold"
+//        case .regular:
+//            fontName = "D2Coding"
+//        default:
+//            fontName = "D2Coding"
+//        }
         switch weight {
         case .bold:
-            weightString = "Bold"
+            fontName = "designhouseBold"
         case .regular:
-            weightString = "Regular"
+            fontName = "designhouseLight"
         default:
-            weightString = "Regular"
+            fontName = "designhouseLight"
         }
 
-        return UIFont(name: "\(fontName)-\(weightString)", size: fontSize) ?? .systemFont(ofSize: fontSize, weight: weight)
-    }
+        return UIFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: fontSize, weight: weight)
+            }
 }
