@@ -11,8 +11,18 @@ extension Double {
     func unixToDate() -> String {
         let date = Date(timeIntervalSince1970: self)
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.timeZone = TimeZone(identifier: "KST")
+        formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "HH시"
+        return formatter.string(from: date)
+    }
+    
+    func unixToDay() -> String {
+        let date = Date(timeIntervalSince1970: self)
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "KST")
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "EEEE"
         return formatter.string(from: date)
     }
     

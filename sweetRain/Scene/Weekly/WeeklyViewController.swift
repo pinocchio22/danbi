@@ -12,7 +12,9 @@ import SnapKit
 class WeeklyViewController: UIViewController {
     // MARK: Properties
 
-    private let WeeklyCollectionView = WeeklyView()
+    private let weeklyCollectionView = WeeklyView()
+    
+    private let viewModel = weeklyViewModel()
 
     // MARK: LifeCycle
 
@@ -22,34 +24,48 @@ class WeeklyViewController: UIViewController {
         
         setupUI()
         configureUI()
+        getWeeklyWeather()
+        bind()
     }
     
     // MARK: Method
 
     private func setupUI() {
-        view.addSubview(WeeklyCollectionView)
+        view.addSubview(weeklyCollectionView)
         
-        WeeklyCollectionView.snp.makeConstraints {
+        weeklyCollectionView.snp.makeConstraints {
             $0.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(Util.verticalMargin)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Util.horizontalMargin)
         }
     }
     
     private func configureUI() {
-        WeeklyCollectionView.weeklyCollectionView.delegate = self
-        WeeklyCollectionView.weeklyCollectionView.dataSource = self
+        weeklyCollectionView.weeklyCollectionView.delegate = self
+        weeklyCollectionView.weeklyCollectionView.dataSource = self
         
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func bind() {
+        viewModel.dayOfWeekDic.bind {_ in
+            self.weeklyCollectionView.weeklyCollectionView.reloadData()
+        }
+    }
+    
+    private func getWeeklyWeather() {
+        viewModel.getWeeklyWeather()
     }
 }
 
 extension WeeklyViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return viewModel.dayOfWeekDic.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyCollectionViewCell.identifier, for: indexPath) as? WeeklyCollectionViewCell else { return UICollectionViewCell() }
+        let item = viewModel.getMaxMinTemp()[indexPath.row]
+        cell.bind(day: item.date, icon: item.icon ?? "", max: item.maxTemp, min: item.minTemp)
         return cell
     }
     

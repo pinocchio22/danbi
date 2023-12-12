@@ -8,13 +8,18 @@
 import Foundation
 
 struct WeeklyWeather {
-    let currentTemp: Double
+//    let currentTemp: Double
+//    let maxTemp: Double
+//    let minTemp: Double
+//    let feelTemp: Double
+//    let timeStamp: String
+//    let discription: String
+//    let icon: String
+    let date: String
+    let timeStamp: String
     let maxTemp: Double
     let minTemp: Double
-    let feelTemp: Double
-    let timeStamp: String
-    let discription: String
-    let icon: String
+    let icon: String?
 }
 
 // MARK: - WeekWeather

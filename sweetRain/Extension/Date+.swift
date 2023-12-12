@@ -12,13 +12,13 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone(abbreviation: "KST")
         return dateFormatter.string(from: self)
     }
 
     func convertDate(type: Calendar.Component) -> Int {
         var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "UTC") ?? TimeZone.current
+        calendar.timeZone = TimeZone(identifier: "KST") ?? TimeZone.current
         let dateComponents = calendar.dateComponents([type], from: self)
         switch type {
         case .day:

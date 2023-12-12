@@ -16,7 +16,6 @@ class TodayViewController: UIViewController {
 
     private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
     private let todayView = TodayView()
-//    private let tomorrowView = TodayView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,6 @@ class TodayViewController: UIViewController {
         view.addSubview(selectDayView)
 
         selectDayView.contentView.addSubview(todayView)
-//        selectDayView.contentView.addSubview(tomorrowView)
         
         selectDayView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
@@ -43,10 +41,6 @@ class TodayViewController: UIViewController {
         todayView.snp.makeConstraints {
             $0.edges.equalTo(selectDayView.contentView)
         }
-        
-//        tomorrowView.snp.makeConstraints {
-//            $0.edges.equalTo(selectDayView.contentView)
-//        }
     }
     
     private func configureUI() {
@@ -65,7 +59,10 @@ class TodayViewController: UIViewController {
     
     private func bind() {
         self.viewModel.currentWeather.bind { weather in
-                self.todayView.updateUI(title: weather?.location ?? "", icon: weather?.icon ?? "", currentTemp: String(weather?.currentTemp ?? 0.0), time: weather?.timeStamp ?? "", description: weather?.description ?? "", maxTemp: String(weather?.maxTemp ?? 0.0), minTemp: String(weather?.minTemp ?? 0.0))
+            if let weather = weather {
+                self.todayView.updateUI(title: weather.location , icon: weather.icon ?? "", currentTemp: String(weather.currentTemp ), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp ), minTemp: String(weather.minTemp ))
+
+            }
         }
         
         self.viewModel.hourlyWeather.bind {_ in
@@ -73,14 +70,12 @@ class TodayViewController: UIViewController {
         }
         
         self.viewModel.selectedIndex.bind { selected in
-//            self.todayView.isHidden = selected
-//            self.tomorrowView.isHidden = !selected
             if selected {
                 // 내일 데이터 불러오기
                 self.getHourlyWeather(type: .tomorrow)
             } else {
-                self.getHourlyWeather(type: .today)
                 // 오늘 데이터 불러오기
+                self.getHourlyWeather(type: .today)
             }
         }
     }

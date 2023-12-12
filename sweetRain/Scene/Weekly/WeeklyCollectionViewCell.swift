@@ -64,4 +64,10 @@ class WeeklyCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .customSkyblue
         self.layer.cornerRadius = Util.smallCorner
     }
+    
+    func bind(day: String, icon: String, max: Double, min: Double) {
+        dayLabel.text = day
+        weatherIcon.setIcon(icon: icon)
+        tempLabel.text = "최저:\(min) / 최고:\(max)"
+    }
 }
