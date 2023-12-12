@@ -75,12 +75,13 @@ class TodayViewController: UIViewController {
         }
         
         self.viewModel.selectedIndex.bind { selected in
-            if selected {
-                // 내일 데이터 불러오기
-                self.getHourlyWeather(type: .tomorrow)
-            } else {
+            self.todayView.selectedUI(selected: selected)
+            if !selected {
                 // 오늘 데이터 불러오기
                 self.getHourlyWeather(type: .today)
+            } else {
+                // 내일 데이터 불러오기
+                self.getHourlyWeather(type: .tomorrow)
             }
         }
     }

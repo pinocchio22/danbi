@@ -96,11 +96,6 @@ class TodayView: UIView {
     }
     
     private func setupUI() {
-//        addSubview(selectDayView)
-//        selectDayView.contentView.addSubview(scrollView)
-//        scrollView.addSubview(contentView)
-//        contentView.addSubview(todayStackView)
-//        contentView.addSubview(weatherStackView)
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(todayStackView)
@@ -141,5 +136,17 @@ class TodayView: UIView {
         timeLabel.text = "\(time) 기준"
         maxminTempLabel.text = "최고:\(maxTemp)℃ / 최저:\(minTemp)℃"
         descriptionLabel.text = description
+    }
+    
+    func selectedUI(selected: Bool) {
+        if !selected {
+            // 오늘
+            sunsetView.isHidden = false
+            sunriseView.isHidden = false
+        } else {
+            // 내일
+            sunsetView.isHidden = true
+            sunriseView.isHidden = true
+        }
     }
 }
