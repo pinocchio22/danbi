@@ -28,4 +28,13 @@ extension Int {
             return ""
         }
     }
+    
+    func unixToTime() -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(self))
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "KST")
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "HH시 mm분"
+        return formatter.string(from: date)
+    }
 }

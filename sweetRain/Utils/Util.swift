@@ -26,3 +26,8 @@ enum WeatherViewType {
     case today
     case tomorrow
 }
+
+enum CustomWeatherViewType {
+    case label
+    case imageView
+}

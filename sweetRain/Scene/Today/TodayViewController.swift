@@ -65,7 +65,7 @@ class TodayViewController: UIViewController {
     private func bind() {
         self.viewModel.currentWeather.bind { weather in
             if let weather = weather {
-                self.todayView.updateUI(title: weather.location , icon: weather.icon ?? "", currentTemp: String(weather.currentTemp ), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp ), minTemp: String(weather.minTemp ))
+                self.todayView.updateUI(title: weather.location , icon: weather.icon ?? "", currentTemp: String(weather.currentTemp ), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp ), minTemp: String(weather.minTemp ), wind: String(weather.windSpeed), humidity: String(weather.humidity), sunset: (weather.sunSet ?? 0).unixToTime(), sunrise: (weather.sunRise ?? 0).unixToTime())
 
             }
         }

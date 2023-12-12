@@ -75,13 +75,17 @@ class TodayView: UIView {
     
     private let descriptionLabel = CustomLabel(text: "오늘의 날씨는?", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
     
-    private let windView = CustomWeatherView(title: "풍속", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    lazy var windView = CustomWeatherView(title: "풍속", viewHeight: 160, type: .label, addView: windLabel)
+    private let windLabel = CustomLabel(text: "바람", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
     
-    private let humidityView = CustomWeatherView(title: "습도", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    lazy var humidityView = CustomWeatherView(title: "습도", viewHeight: 160, type: .label, addView: humidityLabel)
+    private let humidityLabel = CustomLabel(text: "습기", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
     
-    private let sunsetView = CustomWeatherView(title: "일출시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    lazy var sunsetView = CustomWeatherView(title: "일출시간", viewHeight: 80, type: .label, addView: sunsetLabel)
+    private let sunsetLabel = CustomLabel(text: "일출", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
     
-    private let sunriseView = CustomWeatherView(title: "일몰시간", textColor: .black, fontSize: Util.smallFont, fontWeight: .bold, viewHeight: 100)
+    lazy var sunriseView = CustomWeatherView(title: "일몰시간", viewHeight: 80, type: .label, addView: sunriseLabel)
+    private let sunriseLabel = CustomLabel(text: "일몰", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
     
     // MARK: LifeCycle
 
@@ -129,13 +133,17 @@ class TodayView: UIView {
         }
     }
     
-    func updateUI(title: String, icon: String, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String) {
+    func updateUI(title: String, icon: String, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String, wind: String, humidity: String, sunset: String, sunrise: String) {
         currentTempLabel.text = "\(currentTemp)℃"
         titleLabel.text = title
         weatherIcon.setIcon(icon: icon)
         timeLabel.text = "\(time) 기준"
         maxminTempLabel.text = "최고:\(maxTemp)℃ / 최저:\(minTemp)℃"
         descriptionLabel.text = description
+        windLabel.text = wind
+        humidityLabel.text = humidity
+        sunsetLabel.text = "\(sunset)에 해가 뜹니다."
+        sunriseLabel.text = "\(sunrise)에 해가 집니다."
     }
     
     func selectedUI(selected: Bool) {
