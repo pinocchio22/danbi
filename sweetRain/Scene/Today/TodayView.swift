@@ -43,8 +43,10 @@ class TodayView: UIView {
     
     private let titleLabel = CustomLabel(text: "지역", textColor: .black, fontSize: Util.mediumFont, fontWeight: .bold)
     
-    private let searchButton: UIButton = {
+    let searchButton: UIButton = {
         let btn = UIButton()
+        btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        btn.tintColor = .black
         return btn
     }()
     

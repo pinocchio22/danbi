@@ -27,6 +27,12 @@ class TodayViewController: UIViewController {
         getCurrentWeather()
         getHourlyWeather(type: .today)
         setSegmented()
+        setActions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupUI() {
@@ -46,7 +52,6 @@ class TodayViewController: UIViewController {
     private func configureUI() {
         todayView.todayCollectionView.delegate = self
         todayView.todayCollectionView.dataSource = self
-        navigationController?.navigationBar.isHidden = true
     }
     
     private func getCurrentWeather() {
@@ -84,6 +89,15 @@ class TodayViewController: UIViewController {
         selectDayView.segmentedControl.addAction(UIAction(handler: { _ in
             self.viewModel.selectedIndex.value = self.selectDayView.segmentedControl.selectedSegmentIndex != 0
         }), for: .valueChanged)
+    }
+    
+    private func setActions() {
+        todayView.searchButton.addAction(UIAction(handler: { _ in
+            let vc = SearchViewController()
+            self.navigationController?.navigationBar.isHidden = false
+            self.navigationController?.navigationBar.tintColor = .black
+            self.navigationController?.pushViewController(vc, animated: true)
+        }), for: .touchUpInside)
     }
 }
 
