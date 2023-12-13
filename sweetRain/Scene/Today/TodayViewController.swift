@@ -88,7 +88,9 @@ class TodayViewController: UIViewController {
     
     private func setSegmented() {
         selectDayView.segmentedControl.addAction(UIAction(handler: { _ in
-            self.viewModel.selectedIndex.value = self.selectDayView.segmentedControl.selectedSegmentIndex != 0
+            Throttler(maxInterval: 400).throttle {
+                self.viewModel.selectedIndex.value = self.selectDayView.segmentedControl.selectedSegmentIndex != 0
+            }
         }), for: .valueChanged)
     }
     

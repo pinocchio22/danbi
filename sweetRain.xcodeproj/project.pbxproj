@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7720B8D32B29FF7000E57621 /* Throttler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7720B8D22B29FF7000E57621 /* Throttler.swift */; };
 		77494C332B283166005386B0 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77494C322B283166005386B0 /* Int+.swift */; };
 		778B9B102B2302EE00E0DA43 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778B9B0F2B2302EE00E0DA43 /* Observable.swift */; };
 		778B9B122B233CCC00E0DA43 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778B9B112B233CCC00E0DA43 /* Date+.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7720B8D22B29FF7000E57621 /* Throttler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
 		77494C322B283166005386B0 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		778B9B0F2B2302EE00E0DA43 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		778B9B112B233CCC00E0DA43 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				77DFF5CF2B1E21290034C519 /* Util.swift */,
 				778B9B0F2B2302EE00E0DA43 /* Observable.swift */,
+				7720B8D22B29FF7000E57621 /* Throttler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				77EA28BB2B1F3FED007E0559 /* TodayViewModel.swift in Sources */,
 				77DFF5972B1E0A830034C519 /* AppDelegate.swift in Sources */,
 				77DFF5992B1E0A830034C519 /* SceneDelegate.swift in Sources */,
+				7720B8D32B29FF7000E57621 /* Throttler.swift in Sources */,
 				778B9B122B233CCC00E0DA43 /* Date+.swift in Sources */,
 				77EA28BD2B1F3FF7007E0559 /* WeeklyViewModel.swift in Sources */,
 				77BD17972B29A4ED00A43AB7 /* SearchWeather.swift in Sources */,
