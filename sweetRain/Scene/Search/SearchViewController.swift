@@ -11,22 +11,70 @@ import SnapKit
 
 class SearchViewController: UIViewController {
     // MARK: Properties
+
     private let searchView = SearchView()
     
+    private let viewModel = SearchViewModel()
+    
     // MARK: LifeCycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
         setupUI()
+        setSearchBar()
+        setSegmented()
+        bind()
     }
     
     // MARK: Method
+
     private func setupUI() {
         view.addSubview(searchView)
         
         searchView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    private func bind() {
+        viewModel.selectedIndex.bind { selected in
+            self.searchView.selectedUI(selected: selected)
+        }
+        
+        viewModel.filterdWeather.bind { weather in
+            self.searchView.updateUI(filteredWeather: weather)
+        }
+    }
+    
+    private func setSegmented() {
+        searchView.selectSearchView.segmentedControl.addAction(UIAction(handler: { _ in
+            self.viewModel.selectedIndex.value = self.searchView.selectSearchView.segmentedControl.selectedSegmentIndex != 0
+        }), for: .valueChanged)
+    }
+    
+    private func setSearchBar() {
+        searchView.searchBar.delegate = self
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+
+        guard let text = searchView.searchBar.text else { return }
+        viewModel.searchWeather(cityName: text)
+        
+        searchView.searchCollectionView.reloadData()
+    }
+        
+    func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.searchWeather(cityName: "")
+    }
+        
+    // 서치바 키보드 내리기
+    func dismissKeyboard() {
+        searchView.searchBar.resignFirstResponder()
     }
 }

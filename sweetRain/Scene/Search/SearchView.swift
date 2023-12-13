@@ -11,9 +11,20 @@ import SnapKit
 
 class SearchView: UIView {
     // MARK: Properties
-    private let selectSearchView = CustomSegmentedControllerView(firstTitle: "검색", secondTitle: "즐겨찾기")
+    var filteredWeather: [SearchWeather]?
     
-    private let searchTitleLabel = CustomLabel(text: "검색", textColor: .black, fontSize: Util.largeFont, fontWeight: .bold)
+    let selectSearchView = CustomSegmentedControllerView(firstTitle: "검색", secondTitle: "즐겨찾기")
+    
+    let searchTitleLabel = CustomLabel(text: "검색", textColor: .black, fontSize: Util.largeFont, fontWeight: .bold)
+    
+    let searchBar: UISearchBar = {
+        let bar = UISearchBar()
+//        bar.setValue("취소", forKey: "cancelButtonText")
+//        bar.setShowsCancelButton(true, animated: true)
+        bar.placeholder = "지역명"
+        bar.showsSearchResultsButton = true
+        return bar
+    }()
     
     private let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -47,6 +58,7 @@ class SearchView: UIView {
     private func setupUI() {
         addSubview(selectSearchView)
         selectSearchView.contentView.addSubview(searchTitleLabel)
+        selectSearchView.contentView.addSubview(searchBar)
         selectSearchView.contentView.addSubview(searchCollectionView)
         
         selectSearchView.snp.makeConstraints {
@@ -58,8 +70,13 @@ class SearchView: UIView {
             $0.top.leading.equalToSuperview()
         }
         
+        searchBar.snp.makeConstraints {
+            $0.top.equalTo(searchTitleLabel.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(searchTitleLabel.snp.bottom).inset(-Util.verticalMargin)
+            $0.top.equalTo(searchBar.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -68,15 +85,34 @@ class SearchView: UIView {
         searchCollectionView.delegate = self
         searchCollectionView.dataSource = self
     }
+    
+    func updateUI(filteredWeather: [SearchWeather]) {
+        self.filteredWeather = filteredWeather
+        self.searchCollectionView.reloadData()
+    }
+    
+    func selectedUI(selected: Bool) {
+        print("@@@ \(selected)")
+        searchBar.isHidden = selected
+        if !selected {
+            // 검색
+            searchTitleLabel.text = "검색"
+        } else {
+            // 즐겨찾기
+            searchTitleLabel.text = "즐겨찾기"
+        }
+    }
 }
 
 extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
+        guard let item = filteredWeather else { return UICollectionViewCell() }
+        cell.bind(filteredWeather: item)
         return cell
     }
     

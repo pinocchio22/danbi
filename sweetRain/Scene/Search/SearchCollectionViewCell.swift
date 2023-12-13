@@ -11,6 +11,7 @@ import SnapKit
 
 class SearchCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
+    private var filteredWeather: [SearchWeather]?
 
     private let likedButton: UIButton = {
         let btn = UIButton()
@@ -64,15 +65,32 @@ class SearchCollectionViewCell: UICollectionViewCell {
         searchResultCollectionView.delegate = self
         searchResultCollectionView.dataSource = self
     }
+    
+    func bind(filteredWeather: [SearchWeather]) {
+        if filteredWeather.isEmpty {
+            self.likedButton.isHidden = true
+            self.searchResultCollectionView.isHidden = true
+            self.nameLabel.isHidden = true
+        } else {
+            self.likedButton.isHidden = false
+            self.searchResultCollectionView.isHidden = false
+            self.nameLabel.isHidden = false
+            self.nameLabel.text = filteredWeather.first?.cityname
+            self.filteredWeather = filteredWeather
+            self.searchResultCollectionView.reloadData()
+        }
+    }
 }
 
 extension SearchCollectionViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return filteredWeather?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.identifier, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
+        guard let item = filteredWeather?[indexPath.row] else { return UICollectionViewCell() }
+        cell.bind(time: item.timeStamp, icon: item.icon ?? "", temp: String(item.temp))
         return cell
     }
     
