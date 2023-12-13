@@ -8,30 +8,21 @@
 import Foundation
 
 extension Double {
-    func unixToDate() -> String {
+    func unixToDate(type: UnixType) -> String {
         let date = Date(timeIntervalSince1970: self)
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "KST")
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "HH시"
-        return formatter.string(from: date)
-    }
-    
-    func unixToDay() -> String {
-        let date = Date(timeIntervalSince1970: self)
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: "KST")
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "EEEE"
-        return formatter.string(from: date)
-    }
-    
-    func unixToweekTime() -> String {
-        let date = Date(timeIntervalSince1970: self)
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: "KST")
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "dd일 HH시"
+        
+        switch type {
+        case .Date:
+            formatter.dateFormat = "EEEE"
+        case .DayHour:
+            formatter.dateFormat = "dd일 HH시"
+        case .Hour:
+            formatter.dateFormat = "HH시"
+        }
+        
         return formatter.string(from: date)
     }
     

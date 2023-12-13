@@ -20,7 +20,7 @@ class SearchViewModel {
             if let weather = weather {
                 let newWeather = Observable(weather).value
                 newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
-                    weatherList.append(SearchWeather(cityname: newWeather.city.name, timeStamp: item.dt.unixToweekTime(), icon: item.weather.first?.icon, temp: item.main.temp.setRounded()))
+                    weatherList.append(SearchWeather(cityname: newWeather.city.name, timeStamp: item.dt.unixToDate(type: .DayHour), icon: item.weather.first?.icon, temp: item.main.temp.setRounded()))
                 }
                 self.filterdWeather.value = weatherList
             }

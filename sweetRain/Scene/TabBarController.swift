@@ -13,20 +13,33 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let tabs: [(root: UIViewController, icon: String)] = [
-            (WeeklyViewController(), "car"),
-            (TodayViewController(), "book")
+            (WeeklyViewController(), "todayTabBar"),
+            (TodayViewController(), "weeklyTabBar")
         ]
         
-        self.tabBar.backgroundColor = .gray
-        self.tabBar.tintColor = .black
+//        self.tabBar.backgroundColor = .gray
         
         self.setViewControllers(tabs.map { root, icon in
             let navigationController = UINavigationController(rootViewController: root)
-            let tabBarItem = UITabBarItem(title: nil, image: .init(systemName: icon), selectedImage: .init(systemName: "\(icon).fill"))
+            let iconSize = CGSize(width: 40, height: 40)
+            let originalImage = UIImage(named: icon)?.scale(to: iconSize)?.withRenderingMode(.alwaysOriginal)
+            let selectedImage = UIImage(named: "\(icon).fill")?.scale(to: iconSize)?.withRenderingMode(.alwaysOriginal)
+            let tabBarItem = UITabBarItem(title: nil, image: originalImage, selectedImage: selectedImage)
             navigationController.tabBarItem = tabBarItem
+            tabBarItem.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: -15, right: 0)
             return navigationController
         }, animated: false)
         
         self.selectedIndex = 1
+    }
+}
+
+extension UIImage {
+    func scale(to size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }

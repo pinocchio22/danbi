@@ -59,13 +59,15 @@ class TodayViewModel {
             maxTemp: weather.main.tempMax.setRounded(),
             minTemp: weather.main.tempMin.setRounded(),
             feelTemp: weather.main.feelsLike.setRounded(),
-            timeStamp: weather.dt.unixToDate(),
+            timeStamp: weather.dt.unixToDate(type: .Hour),
             humidity: weather.main.humidity,
             windSpeed: weather.wind.speed,
             icon: weather.weather.first?.icon,
             description: weather.weather.first?.description ?? "날씨 정보 없음"
         ))
     }
+    
+    // UI전용 모델 생성
     
     private func setCurrentWeather(newWeather: TodayWeather) {
         self.currentWeather.value = CurrentWeather(
@@ -93,15 +95,13 @@ class TodayViewModel {
             location: newWeather.city.name,
             lat: newWeather.city.coord.lat,
             lon: newWeather.city.coord.lon,
-            currentTemp: weather.main.temp.setRounded() ,
-            maxTemp: weather.main.tempMax.setRounded() ,
-            minTemp: weather.main.tempMin.setRounded() ,
-            feelTemp: weather.main.feelsLike.setRounded() ,
+            currentTemp: weather.main.temp.setRounded(),
+            maxTemp: weather.main.tempMax.setRounded(),
+            minTemp: weather.main.tempMin.setRounded(),
+            feelTemp: weather.main.feelsLike.setRounded(),
             timeStamp: Date().toStringDetail(),
-            humidity: weather.main.humidity ,
-            windSpeed: weather.wind.speed ,
-            sunRise: nil,
-            sunSet: nil,
+            humidity: weather.main.humidity,
+            windSpeed: weather.wind.speed,
             icon: weather.weather.first?.icon,
             description: weather.weather.first?.description ?? ""
         )

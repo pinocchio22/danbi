@@ -23,9 +23,10 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupUI()
+        bind()
+        configureUI()
         setSearchBar()
         setSegmented()
-        bind()
     }
     
     // MARK: Method
@@ -46,6 +47,10 @@ class SearchViewController: UIViewController {
         viewModel.filterdWeather.bind { weather in
             self.searchView.updateUI(filteredWeather: weather)
         }
+    }
+    
+    private func configureUI() {
+        searchView.delegate = self
     }
     
     private func setSegmented() {
@@ -73,8 +78,13 @@ extension SearchViewController: UISearchBarDelegate {
         viewModel.searchWeather(cityName: "")
     }
         
-    // 서치바 키보드 내리기
     func dismissKeyboard() {
         searchView.searchBar.resignFirstResponder()
+    }
+}
+
+extension SearchViewController: SearchViewDelegate {
+    func didTapLikedButton(in cell: SearchCollectionViewCell) {
+        cell.likedButton.isSelected.toggle()
     }
 }

@@ -9,13 +9,20 @@ import UIKit
 
 import SnapKit
 
+protocol SearchCollectionViewCellDelegate: AnyObject {
+    func likedButtonTapped(in cell: SearchCollectionViewCell)
+}
+
 class SearchCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     private var filteredWeather: [SearchWeather]?
+    
+    weak var delegate: SearchCollectionViewCellDelegate?
 
-    private let likedButton: UIButton = {
+    let likedButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "star"), for: .normal)
+        btn.setImage(UIImage(systemName: "star.fill"), for: .selected)
         btn.tintColor = .systemYellow
         return btn
     }()
@@ -30,6 +37,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupUI()
         configureUI()
+        setActions()
     }
     
     @available(*, unavailable)
@@ -45,13 +53,12 @@ class SearchCollectionViewCell: UICollectionViewCell {
         addSubview(searchResultCollectionView)
         
         likedButton.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-            $0.centerY.equalTo(nameLabel)
+            $0.top.leading.equalToSuperview().inset(Util.verticalMargin)
             $0.size.equalTo(20)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview()
+            $0.top.trailing.equalToSuperview().inset(Util.verticalMargin + 2)
             $0.leading.equalTo(likedButton.snp.trailing).inset(-Util.horizontalMargin)
         }
         
@@ -64,6 +71,12 @@ class SearchCollectionViewCell: UICollectionViewCell {
     private func configureUI() {
         searchResultCollectionView.delegate = self
         searchResultCollectionView.dataSource = self
+    }
+    
+    private func setActions() {
+        likedButton.addAction(UIAction(handler: {_ in
+            self.delegate?.likedButtonTapped(in: self)
+        }), for: .touchUpInside)
     }
     
     func bind(filteredWeather: [SearchWeather]) {

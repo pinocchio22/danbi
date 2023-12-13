@@ -15,10 +15,10 @@ class weeklyViewModel {
     func getWeeklyWeather() {
         networkService.getWeeklyWeather(cityName: "Uijeongbu-si") { weather in
             weather?.list.forEach {
-                if self.dayOfWeekDic.value[$0.dt.unixToDay()] != nil {
-                    self.dayOfWeekDic.value[$0.dt.unixToDay()]?.append(WeeklyWeather(date: $0.dt.unixToDay(),timeStamp: $0.dtTxt, maxTemp: $0.main.tempMax, minTemp: $0.main.tempMin, icon: $0.weather.first?.icon))
+                if self.dayOfWeekDic.value[$0.dt.unixToDate(type: .Date)] != nil {
+                    self.dayOfWeekDic.value[$0.dt.unixToDate(type: .Date)]?.append(WeeklyWeather(date: $0.dt.unixToDate(type: .Date),timeStamp: $0.dtTxt, maxTemp: $0.main.tempMax, minTemp: $0.main.tempMin, icon: $0.weather.first?.icon))
                 } else {
-                    self.dayOfWeekDic.value[$0.dt.unixToDay()] = [WeeklyWeather(date: $0.dt.unixToDay(), timeStamp: $0.dtTxt, maxTemp: $0.main.tempMax, minTemp: $0.main.tempMin, icon: $0.weather.first?.icon)]
+                    self.dayOfWeekDic.value[$0.dt.unixToDate(type: .Date)] = [WeeklyWeather(date: $0.dt.unixToDate(type: .Date), timeStamp: $0.dtTxt, maxTemp: $0.main.tempMax, minTemp: $0.main.tempMin, icon: $0.weather.first?.icon)]
                 }
             }
         }

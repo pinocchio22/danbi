@@ -31,3 +31,9 @@ enum CustomWeatherViewType {
     case label
     case imageView
 }
+
+enum UnixType {
+    case Hour
+    case Date
+    case DayHour
+}

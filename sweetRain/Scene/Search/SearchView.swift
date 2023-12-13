@@ -9,9 +9,14 @@ import UIKit
 
 import SnapKit
 
+protocol SearchViewDelegate: AnyObject {
+    func didTapLikedButton(in cell: SearchCollectionViewCell)
+}
+
 class SearchView: UIView {
     // MARK: Properties
     var filteredWeather: [SearchWeather]?
+    weak var delegate: SearchViewDelegate?
     
     let selectSearchView = CustomSegmentedControllerView(firstTitle: "검색", secondTitle: "즐겨찾기")
     
@@ -19,8 +24,6 @@ class SearchView: UIView {
     
     let searchBar: UISearchBar = {
         let bar = UISearchBar()
-//        bar.setValue("취소", forKey: "cancelButtonText")
-//        bar.setShowsCancelButton(true, animated: true)
         bar.placeholder = "지역명"
         bar.showsSearchResultsButton = true
         return bar
@@ -92,7 +95,6 @@ class SearchView: UIView {
     }
     
     func selectedUI(selected: Bool) {
-        print("@@@ \(selected)")
         searchBar.isHidden = selected
         if !selected {
             // 검색
@@ -101,6 +103,7 @@ class SearchView: UIView {
             // 즐겨찾기
             searchTitleLabel.text = "즐겨찾기"
         }
+        self.searchCollectionView.reloadData()
     }
 }
 
@@ -113,10 +116,17 @@ extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
         guard let item = filteredWeather else { return UICollectionViewCell() }
         cell.bind(filteredWeather: item)
+        cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.size.width, height: 130)
+    }
+}
+
+extension SearchView: SearchCollectionViewCellDelegate {
+    func likedButtonTapped(in cell: SearchCollectionViewCell) {
+        delegate?.didTapLikedButton(in: cell)
     }
 }

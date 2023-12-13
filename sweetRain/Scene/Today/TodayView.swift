@@ -38,6 +38,7 @@ class TodayView: UIView {
     
     private let likedButton: UIButton = {
         let btn = UIButton()
+        btn.setImage(UIImage(systemName: "star"), for: .normal)
         return btn
     }()
     
