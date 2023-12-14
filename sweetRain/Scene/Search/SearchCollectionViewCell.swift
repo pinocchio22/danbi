@@ -10,14 +10,15 @@ import UIKit
 import SnapKit
 
 protocol SearchCollectionViewCellDelegate: AnyObject {
-    func likedButtonTapped(in cell: SearchCollectionViewCell)
+    func likedButtonTapped(in cell: SearchCollectionViewCell, at indexPath: IndexPath)
 }
 
 class SearchCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
-    private var filteredWeather: [SearchWeather]?
+    var filteredWeather: [SearchWeather]?
     
     weak var delegate: SearchCollectionViewCellDelegate?
+    var indexPath: IndexPath?
 
     let likedButton: UIButton = {
         let btn = UIButton()
@@ -75,7 +76,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     private func setActions() {
         likedButton.addAction(UIAction(handler: {_ in
-            self.delegate?.likedButtonTapped(in: self)
+            if let indexPath = self.indexPath {
+                self.delegate?.likedButtonTapped(in: self, at: indexPath)
+                    }
         }), for: .touchUpInside)
     }
     

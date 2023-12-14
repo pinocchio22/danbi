@@ -41,10 +41,10 @@ class SearchViewController: UIViewController {
     
     private func bind() {
         viewModel.selectedIndex.bind { selected in
-            self.searchView.selectedUI(selected: selected)
+            self.searchView.selectedUI(selected: selected, weather: self.viewModel.dummy)
         }
         
-        viewModel.filterdWeather.bind { weather in
+        viewModel.filteredWeather.bind { weather in
             self.searchView.updateUI(filteredWeather: weather)
         }
     }
@@ -84,7 +84,8 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: SearchViewDelegate {
-    func didTapLikedButton(in cell: SearchCollectionViewCell) {
+    func didTapLikedButton(in cell: SearchCollectionViewCell, at indexPath: IndexPath) {
         cell.likedButton.isSelected.toggle()
+        print(indexPath.row)
     }
 }

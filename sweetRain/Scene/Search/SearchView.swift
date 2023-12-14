@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 protocol SearchViewDelegate: AnyObject {
-    func didTapLikedButton(in cell: SearchCollectionViewCell)
+    func didTapLikedButton(in cell: SearchCollectionViewCell, at indexPath: IndexPath)
 }
 
 class SearchView: UIView {
@@ -94,7 +94,7 @@ class SearchView: UIView {
         self.searchCollectionView.reloadData()
     }
     
-    func selectedUI(selected: Bool) {
+    func selectedUI(selected: Bool, weather: [SearchWeather]) {
         searchBar.isHidden = selected
         if !selected {
             // 검색
@@ -102,6 +102,7 @@ class SearchView: UIView {
         } else {
             // 즐겨찾기
             searchTitleLabel.text = "즐겨찾기"
+            self.filteredWeather = weather
         }
         self.searchCollectionView.reloadData()
     }
@@ -117,6 +118,7 @@ extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         guard let item = filteredWeather else { return UICollectionViewCell() }
         cell.bind(filteredWeather: item)
         cell.delegate = self
+        cell.indexPath = indexPath
         return cell
     }
     
@@ -126,7 +128,7 @@ extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
 }
 
 extension SearchView: SearchCollectionViewCellDelegate {
-    func likedButtonTapped(in cell: SearchCollectionViewCell) {
-        delegate?.didTapLikedButton(in: cell)
+    func likedButtonTapped(in cell: SearchCollectionViewCell, at indexPath: IndexPath) {
+        delegate?.didTapLikedButton(in: cell, at: indexPath)
     }
 }
