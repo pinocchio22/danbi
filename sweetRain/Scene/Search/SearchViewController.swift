@@ -45,6 +45,9 @@ class SearchViewController: UIViewController {
         }
         
         viewModel.filteredWeather.bind { weather in
+            if !weather.isEmpty {
+                self.searchView.checkLiked(liked: self.viewModel.checkLikedWeather(weather: weather[0].cityname))
+            }
             self.searchView.updateUI(filteredWeather: weather)
         }
     }
@@ -85,7 +88,6 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: SearchViewDelegate {
     func didTapLikedButton(in cell: SearchCollectionViewCell, at indexPath: IndexPath) {
-        cell.likedButton.isSelected.toggle()
-        print(indexPath.row)
+        cell.likedButton.isSelected = viewModel.checkLikedWeather(weather: cell.filteredWeather?[indexPath.row].cityname ?? "")
     }
 }

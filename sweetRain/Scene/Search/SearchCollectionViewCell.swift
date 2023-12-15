@@ -11,6 +11,8 @@ import SnapKit
 
 protocol SearchCollectionViewCellDelegate: AnyObject {
     func likedButtonTapped(in cell: SearchCollectionViewCell, at indexPath: IndexPath)
+    
+    func updateLikedButton(liked: Bool)
 }
 
 class SearchCollectionViewCell: UICollectionViewCell {
@@ -82,13 +84,16 @@ class SearchCollectionViewCell: UICollectionViewCell {
         }), for: .touchUpInside)
     }
     
-    func bind(filteredWeather: [SearchWeather]) {
+    func bind(filteredWeather: [SearchWeather], liked: Bool) {
         if filteredWeather.isEmpty {
+            // 즐겨찾기
             self.likedButton.isHidden = true
             self.searchResultCollectionView.isHidden = true
             self.nameLabel.isHidden = true
         } else {
+            // 검색
             self.likedButton.isHidden = false
+            self.likedButton.isSelected = liked
             self.searchResultCollectionView.isHidden = false
             self.nameLabel.isHidden = false
             self.nameLabel.text = filteredWeather.first?.cityname

@@ -17,6 +17,7 @@ class SearchView: UIView {
     // MARK: Properties
     var filteredWeather: [SearchWeather]?
     weak var delegate: SearchViewDelegate?
+    var liked: Bool?
     
     let selectSearchView = CustomSegmentedControllerView(firstTitle: "검색", secondTitle: "즐겨찾기")
     
@@ -89,9 +90,19 @@ class SearchView: UIView {
         searchCollectionView.dataSource = self
     }
     
+//    func updateUI(filteredWeather: [SearchWeather], liked: Bool) {
+//        self.filteredWeather = filteredWeather
+//        self.searchCollectionView.reloadData()
+//        self.liked = liked
+//    }
+    
     func updateUI(filteredWeather: [SearchWeather]) {
         self.filteredWeather = filteredWeather
         self.searchCollectionView.reloadData()
+    }
+    
+    func checkLiked(liked: Bool) {
+        self.liked = liked
     }
     
     func selectedUI(selected: Bool, weather: [SearchWeather]) {
@@ -116,7 +127,7 @@ extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
         guard let item = filteredWeather else { return UICollectionViewCell() }
-        cell.bind(filteredWeather: item)
+        cell.bind(filteredWeather: item, liked: liked ?? false)
         cell.delegate = self
         cell.indexPath = indexPath
         return cell
@@ -128,6 +139,10 @@ extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
 }
 
 extension SearchView: SearchCollectionViewCellDelegate {
+    func updateLikedButton(liked: Bool) {
+        self.liked = liked
+    }
+    
     func likedButtonTapped(in cell: SearchCollectionViewCell, at indexPath: IndexPath) {
         delegate?.didTapLikedButton(in: cell, at: indexPath)
     }

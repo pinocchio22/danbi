@@ -9,8 +9,12 @@ import Foundation
 
 class TodayViewModel {
     private let networkService = NetworkService()
+    private let userDefaultsService = UserDefaultsService()
     var currentWeather: Observable<CurrentWeather?> = Observable(nil)
     var hourlyWeather: Observable<[CurrentWeather?]> = Observable([])
+    var hourlyWeatherCount: Int {
+        return hourlyWeather.value.count
+    }
     var selectedIndex: Observable<Bool> = Observable(false)
 
     func getCurrentWeather() {
@@ -47,6 +51,23 @@ class TodayViewModel {
                 }
             }
         }
+    }
+    
+    func likedWeather(weather: [CurrentWeather?]) -> Bool {
+        let key = weather[0]?.location ?? ""
+        let value = weather.compactMap{ $0 }
+        if checkLikedWeather(weather: weather[0]) {
+            userDefaultsService.removeDefaults(key: key)
+            return false
+        } else {
+            userDefaultsService.setUserDefaults(key: key, value: value)
+            return true
+        }
+    }
+    
+    func checkLikedWeather(weather: CurrentWeather?) -> Bool {
+        let key = weather?.location ?? ""
+        return userDefaultsService.getUserDefaults(key: key) != []
     }
     
     private func setHourlyWeather(newWeather: WeekWeather, weather: WeekWeather.List) {

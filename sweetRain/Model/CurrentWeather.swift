@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentWeather {
+struct CurrentWeather: Codable, Equatable {
     let id: Int
     let location: String
     let lat: Double

@@ -9,6 +9,7 @@ import Foundation
 
 class SearchViewModel {
     private let networkService = NetworkService()
+    private let userDefaultsService = UserDefaultsService()
     
     var filteredWeather: Observable<[SearchWeather]> = Observable([])
     var selectedIndex: Observable<Bool> = Observable(false)
@@ -27,5 +28,9 @@ class SearchViewModel {
                 self.filteredWeather.value = weatherList
             }
         }
+    }
+    
+    func checkLikedWeather(weather: String) -> Bool {
+        return userDefaultsService.getUserDefaults(key: weather) != []
     }
 }

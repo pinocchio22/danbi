@@ -65,7 +65,7 @@ class TodayViewController: UIViewController {
     private func bind() {
         self.viewModel.currentWeather.bind { weather in
             if let weather = weather {
-                self.todayView.updateUI(title: weather.location , icon: weather.icon ?? "", currentTemp: String(weather.currentTemp ), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp ), minTemp: String(weather.minTemp ), wind: String(weather.windSpeed), humidity: String(weather.humidity), sunset: (weather.sunSet ?? 0).unixToTime(), sunrise: (weather.sunRise ?? 0).unixToTime())
+                self.todayView.updateUI(title: weather.location , icon: weather.icon ?? "", currentTemp: String(weather.currentTemp ), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp ), minTemp: String(weather.minTemp ), wind: String(weather.windSpeed), humidity: String(weather.humidity), sunset: (weather.sunSet ?? 0).unixToTime(), sunrise: (weather.sunRise ?? 0).unixToTime(), liked: self.viewModel.checkLikedWeather(weather: weather))
 
             }
         }
@@ -101,12 +101,16 @@ class TodayViewController: UIViewController {
             self.navigationController?.navigationBar.tintColor = .black
             self.navigationController?.pushViewController(vc, animated: true)
         }), for: .touchUpInside)
+        
+        todayView.likedButton.addAction(UIAction(handler: { _ in
+            self.todayView.likedButtonTapped(selected: self.viewModel.likedWeather(weather: self.viewModel.hourlyWeather.value))
+        }), for: .touchUpInside)
     }
 }
 
 extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.hourlyWeather.value.count
+        return viewModel.hourlyWeatherCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

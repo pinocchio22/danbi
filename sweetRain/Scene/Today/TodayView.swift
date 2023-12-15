@@ -36,9 +36,11 @@ class TodayView: UIView {
         return view
     }()
     
-    private let likedButton: UIButton = {
+    let likedButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "star"), for: .normal)
+        btn.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        btn.tintColor = .systemYellow
         return btn
     }()
     
@@ -134,7 +136,7 @@ class TodayView: UIView {
         }
     }
     
-    func updateUI(title: String, icon: String, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String, wind: String, humidity: String, sunset: String, sunrise: String) {
+    func updateUI(title: String, icon: String, currentTemp: String, time: String, description: String, maxTemp: String, minTemp: String, wind: String, humidity: String, sunset: String, sunrise: String, liked: Bool) {
         currentTempLabel.text = "\(currentTemp)℃"
         titleLabel.text = title
         weatherIcon.setIcon(icon: icon)
@@ -145,6 +147,7 @@ class TodayView: UIView {
         humidityLabel.text = humidity
         sunsetLabel.text = "\(sunset)에 해가 뜹니다."
         sunriseLabel.text = "\(sunrise)에 해가 집니다."
+        likedButton.isSelected = liked
     }
     
     func selectedUI(selected: Bool) {
@@ -157,5 +160,9 @@ class TodayView: UIView {
             sunsetView.isHidden = true
             sunriseView.isHidden = true
         }
+    }
+    
+    func likedButtonTapped(selected: Bool) {
+        likedButton.isSelected = selected
     }
 }
