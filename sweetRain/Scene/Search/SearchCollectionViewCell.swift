@@ -17,7 +17,7 @@ protocol SearchCollectionViewCellDelegate: AnyObject {
 
 class SearchCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
-    var filteredWeather: [SearchWeather]?
+    var filteredWeather: [CurrentWeather]?
     
     weak var delegate: SearchCollectionViewCellDelegate?
     var indexPath: IndexPath?
@@ -84,7 +84,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         }), for: .touchUpInside)
     }
     
-    func bind(filteredWeather: [SearchWeather], liked: Bool) {
+    func bind(filteredWeather: [CurrentWeather], liked: Bool) {
         if filteredWeather.isEmpty {
             // 즐겨찾기
             self.likedButton.isHidden = true
@@ -96,7 +96,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
             self.likedButton.isSelected = liked
             self.searchResultCollectionView.isHidden = false
             self.nameLabel.isHidden = false
-            self.nameLabel.text = filteredWeather.first?.cityname
+            self.nameLabel.text = filteredWeather.first?.location
             self.filteredWeather = filteredWeather
             self.searchResultCollectionView.reloadData()
         }
@@ -111,7 +111,7 @@ extension SearchCollectionViewCell: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.identifier, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
         guard let item = filteredWeather?[indexPath.row] else { return UICollectionViewCell() }
-        cell.bind(time: item.timeStamp, icon: item.icon ?? "", temp: String(item.temp))
+        cell.bind(time: item.timeStamp, icon: item.icon ?? "", temp: String(item.currentTemp))
         return cell
     }
     

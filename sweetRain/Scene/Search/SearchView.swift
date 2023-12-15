@@ -15,7 +15,7 @@ protocol SearchViewDelegate: AnyObject {
 
 class SearchView: UIView {
     // MARK: Properties
-    var filteredWeather: [SearchWeather]?
+    var filteredWeather: [CurrentWeather]?
     weak var delegate: SearchViewDelegate?
     var liked: Bool?
     
@@ -96,7 +96,7 @@ class SearchView: UIView {
 //        self.liked = liked
 //    }
     
-    func updateUI(filteredWeather: [SearchWeather]) {
+    func updateUI(filteredWeather: [CurrentWeather]) {
         self.filteredWeather = filteredWeather
         self.searchCollectionView.reloadData()
     }
@@ -105,7 +105,7 @@ class SearchView: UIView {
         self.liked = liked
     }
     
-    func selectedUI(selected: Bool, weather: [SearchWeather]) {
+    func selectedUI(selected: Bool, weather: [CurrentWeather]) {
         searchBar.isHidden = selected
         if !selected {
             // 검색
@@ -134,7 +134,7 @@ extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 130)
+        return CGSize(width: collectionView.bounds.size.width, height: 150)
     }
 }
 

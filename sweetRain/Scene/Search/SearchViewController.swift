@@ -23,10 +23,14 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupUI()
-        bind()
         configureUI()
         setSearchBar()
         setSegmented()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bind()
     }
     
     // MARK: Method
@@ -46,7 +50,7 @@ class SearchViewController: UIViewController {
         
         viewModel.filteredWeather.bind { weather in
             if !weather.isEmpty {
-                self.searchView.checkLiked(liked: self.viewModel.checkLikedWeather(weather: weather[0].cityname))
+                self.searchView.checkLiked(liked: self.viewModel.checkLikedWeather(weather: weather[0].location))
             }
             self.searchView.updateUI(filteredWeather: weather)
         }
@@ -88,6 +92,8 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: SearchViewDelegate {
     func didTapLikedButton(in cell: SearchCollectionViewCell, at indexPath: IndexPath) {
-        cell.likedButton.isSelected = viewModel.checkLikedWeather(weather: cell.filteredWeather?[indexPath.row].cityname ?? "")
+        if let weather = cell.filteredWeather {
+            cell.likedButton.isSelected = viewModel.likedWeather(weather: weather)
+        }
     }
 }

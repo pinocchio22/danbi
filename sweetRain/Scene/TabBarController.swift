@@ -8,16 +8,17 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         
         let tabs: [(root: UIViewController, icon: String)] = [
             (WeeklyViewController(), "todayTabBar"),
             (TodayViewController(), "weeklyTabBar")
         ]
         
-//        self.tabBar.backgroundColor = .gray
+        self.tabBar.backgroundColor = .customDarkblue
         
         self.setViewControllers(tabs.map { root, icon in
             let navigationController = UINavigationController(rootViewController: root)
@@ -34,12 +35,13 @@ class TabBarController: UITabBarController {
     }
 }
 
-extension UIImage {
-    func scale(to size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let navigationController = viewController as? UINavigationController {
+                DispatchQueue.main.async {
+                    navigationController.popToRootViewController(animated: false)
+                }
+            }
+        return true
     }
 }
