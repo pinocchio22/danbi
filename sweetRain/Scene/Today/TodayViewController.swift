@@ -24,14 +24,14 @@ class TodayViewController: UIViewController {
         setupUI()
         configureUI()
         bind()
-        getCurrentWeather()
-        getHourlyWeather(type: .today)
         setSegmented()
         setActions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getCurrentWeather()
+        getHourlyWeather(type: .today)
         navigationController?.navigationBar.isHidden = true
     }
     

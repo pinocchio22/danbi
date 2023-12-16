@@ -15,7 +15,7 @@ protocol SearchViewDelegate: AnyObject {
 
 class SearchView: UIView {
     // MARK: Properties
-    var filteredWeather: [CurrentWeather]?
+    var filteredWeather: [[CurrentWeather]]?
     weak var delegate: SearchViewDelegate?
     var liked: Bool?
     
@@ -96,7 +96,7 @@ class SearchView: UIView {
 //        self.liked = liked
 //    }
     
-    func updateUI(filteredWeather: [CurrentWeather]) {
+    func updateUI(filteredWeather: [[CurrentWeather]]) {
         self.filteredWeather = filteredWeather
         self.searchCollectionView.reloadData()
     }
@@ -105,14 +105,16 @@ class SearchView: UIView {
         self.liked = liked
     }
     
-    func selectedUI(selected: Bool, weather: [CurrentWeather]) {
+    func selectedUI(selected: Bool, weather: [[CurrentWeather]]) {
         searchBar.isHidden = selected
+        self.filteredWeather = []
         if !selected {
             // 검색
             searchTitleLabel.text = "검색"
         } else {
             // 즐겨찾기
             searchTitleLabel.text = "즐겨찾기"
+            self.liked = true
             self.filteredWeather = weather
         }
         self.searchCollectionView.reloadData()
@@ -121,12 +123,12 @@ class SearchView: UIView {
 
 extension SearchView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return filteredWeather?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        guard let item = filteredWeather else { return UICollectionViewCell() }
+        guard let item = filteredWeather?[indexPath.row] else { return UICollectionViewCell() }
         cell.bind(filteredWeather: item, liked: liked ?? false)
         cell.delegate = self
         cell.indexPath = indexPath
