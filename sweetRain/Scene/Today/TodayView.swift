@@ -12,8 +12,6 @@ import SnapKit
 class TodayView: UIView {
     // MARK: Properties
     
-//    private let selectDayView = CustomSegmentedControllerView(firstTitle: "오늘", secondTitle: "내일")
-    
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
