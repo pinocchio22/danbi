@@ -24,8 +24,12 @@ class WeeklyViewController: UIViewController {
         
         setupUI()
         configureUI()
-        getWeeklyWeather()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getCurrentLocation()
     }
     
     // MARK: Method
@@ -50,6 +54,14 @@ class WeeklyViewController: UIViewController {
         viewModel.dayOfWeekDic.bind {_ in
             self.weeklyCollectionView.weeklyCollectionView.reloadData()
         }
+        
+        viewModel.currentLocation.bind {_ in
+            self.getWeeklyWeather()
+        }
+    }
+    
+    private func getCurrentLocation() {
+        viewModel.getCurrentLocation()
     }
     
     private func getWeeklyWeather() {

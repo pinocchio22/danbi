@@ -45,7 +45,7 @@ class CustomSegmentedControllerView: UIView {
 
         contentView.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).inset(-Util.verticalMargin)
-            $0.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
+            $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             $0.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }

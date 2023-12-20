@@ -23,15 +23,16 @@ class TodayViewController: UIViewController {
         
         setupUI()
         configureUI()
-        bind()
         setSegmented()
         setActions()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getCurrentWeather()
-        getHourlyWeather(type: .today)
+        getCurrentLocation()
+//        getCurrentWeather()
+//        getHourlyWeather(type: .today)
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -54,6 +55,10 @@ class TodayViewController: UIViewController {
         todayView.todayCollectionView.dataSource = self
     }
     
+    private func getCurrentLocation() {
+        viewModel.getCurrentLocation()
+    }
+    
     private func getCurrentWeather() {
         viewModel.getCurrentWeather()
     }
@@ -71,6 +76,7 @@ class TodayViewController: UIViewController {
         }
         
         self.viewModel.hourlyWeather.bind {_ in
+            print("@@ \(self.viewModel.hourlyWeatherCount)")
             self.todayView.todayCollectionView.reloadData()
         }
         
@@ -83,6 +89,11 @@ class TodayViewController: UIViewController {
                 // 내일 데이터 불러오기
                 self.getHourlyWeather(type: .tomorrow)
             }
+        }
+        
+        self.viewModel.currentLocation.bind {_ in
+            self.getCurrentWeather()
+            self.getHourlyWeather(type: .today)
         }
     }
     

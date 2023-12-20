@@ -10,15 +10,25 @@ import Foundation
 class TodayViewModel {
     private let networkService = NetworkService()
     private let userDefaultsService = UserDefaultsService()
+    private let locationService = LocationService()
+    
     var currentWeather: Observable<CurrentWeather?> = Observable(nil)
     var hourlyWeather: Observable<[CurrentWeather?]> = Observable([])
     var hourlyWeatherCount: Int {
         return hourlyWeather.value.count
     }
+    var currentLocation: Observable<(Double, Double)> = Observable((0,0))
     var selectedIndex: Observable<Bool> = Observable(false)
+    
+    func getCurrentLocation() {
+        self.locationService.startUpdating()
+        self.locationService.currentLocation.bind {_ in
+            self.currentLocation.value = self.locationService.currentLocation.value
+        }
+    }
 
     func getCurrentWeather() {
-        networkService.getCurrentWeather(cityName: "Uijeongbu-si") { weather in
+        networkService.getCurrentWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
             if let weather = weather {
                 let newWeather = Observable(weather).value
                 self.setCurrentWeather(newWeather: newWeather)
@@ -29,7 +39,7 @@ class TodayViewModel {
     func getHourlyWeather(type: WeatherViewType) {
         switch type {
         case .today:
-            networkService.getWeeklyWeather(cityName: "Uijeongbu-si") { weather in
+            networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
                 self.hourlyWeather.value = []
                 if let weather = weather {
                     let newWeather = Observable(weather).value
@@ -40,7 +50,7 @@ class TodayViewModel {
                 }
             }
         case .tomorrow:
-            networkService.getWeeklyWeather(cityName: "Uijeongbu-si") { weather in
+            networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
                 self.hourlyWeather.value = []
                 if let weather = weather {
                     let newWeather = Observable(weather).value

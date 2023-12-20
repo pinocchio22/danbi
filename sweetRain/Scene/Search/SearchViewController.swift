@@ -26,8 +26,6 @@ class SearchViewController: UIViewController {
         configureUI()
         setSearchBar()
         setSegmented()
-        
-        self.viewModel.getLikedWeather()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +43,10 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func configureUI() {
+        searchView.delegate = self
+    }
+    
     private func bind() {
         viewModel.selectedIndex.bind { selected in
             self.searchView.selectedUI(selected: selected, weather: self.viewModel.getLikedWeather())
@@ -56,10 +58,6 @@ class SearchViewController: UIViewController {
             }
             self.searchView.updateUI(filteredWeather: weather)
         }
-    }
-    
-    private func configureUI() {
-        searchView.delegate = self
     }
     
     private func setSegmented() {

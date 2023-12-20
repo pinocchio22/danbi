@@ -7,7 +7,7 @@
 
 import Foundation
 
-//class SearchViewModel {
+// class SearchViewModel {
 //    private let networkService = NetworkService()
 //    private let userDefaultsService = UserDefaultsService()
 //
@@ -33,7 +33,7 @@ import Foundation
 //    func checkLikedWeather(weather: String) -> Bool {
 //        return userDefaultsService.getUserDefaults(key: weather) != []
 //    }
-//}
+// }
 
 class SearchViewModel {
     private let networkService = NetworkService()
@@ -51,8 +51,7 @@ class SearchViewModel {
             if let weather = weather {
                 let newWeather = Observable(weather).value
                 newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
-                                        weatherList.append(CurrentWeather(id: weather.city.id, location: weather.city.name, lat: weather.city.coord.lat, lon: weather.city.coord.lon, currentTemp: item.main.temp, maxTemp: item.main.tempMax, minTemp: item.main.tempMin, feelTemp: item.main.feelsLike, timeStamp: item.dt.unixToDate(type: .DayHour), humidity: item.main.humidity, windSpeed: item.wind.speed, icon: item.weather.first?.icon, description: item.weather.first?.description ?? ""))
-                    print(item)
+                    weatherList.append(CurrentWeather(id: weather.city.id, location: weather.city.name, lat: weather.city.coord.lat, lon: weather.city.coord.lon, currentTemp: item.main.temp, maxTemp: item.main.tempMax, minTemp: item.main.tempMin, feelTemp: item.main.feelsLike, timeStamp: item.dt.unixToDate(type: .DayHour), humidity: item.main.humidity, windSpeed: item.wind.speed, icon: item.weather.first?.icon, description: item.weather.first?.description ?? ""))
                 }
                 self.filteredWeather.value.append(weatherList)
             }
@@ -61,7 +60,7 @@ class SearchViewModel {
     
     func likedWeather(weather: [CurrentWeather?]) -> Bool {
         let key = weather[0]?.location ?? ""
-        let value = weather.compactMap{ $0 }
+        let value = weather.compactMap { $0 }
         if checkLikedWeather(weather: weather[0]?.location ?? "") {
             userDefaultsService.removeDefaults(key: key)
             return false
@@ -75,7 +74,7 @@ class SearchViewModel {
         return userDefaultsService.getUserDefaults(key: weather) != []
     }
     
-    func getLikedWeather() -> [[CurrentWeather]]{
+    func getLikedWeather() -> [[CurrentWeather]] {
         return userDefaultsService.getAllData()
     }
 }

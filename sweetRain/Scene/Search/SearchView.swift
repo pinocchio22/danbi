@@ -90,12 +90,6 @@ class SearchView: UIView {
         searchCollectionView.dataSource = self
     }
     
-//    func updateUI(filteredWeather: [SearchWeather], liked: Bool) {
-//        self.filteredWeather = filteredWeather
-//        self.searchCollectionView.reloadData()
-//        self.liked = liked
-//    }
-    
     func updateUI(filteredWeather: [[CurrentWeather]]) {
         self.filteredWeather = filteredWeather
         self.searchCollectionView.reloadData()
