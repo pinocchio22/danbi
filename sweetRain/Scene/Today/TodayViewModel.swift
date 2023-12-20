@@ -37,26 +37,28 @@ class TodayViewModel {
     }
 
     func getHourlyWeather(type: WeatherViewType) {
-        switch type {
-        case .today:
-            networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
-                self.hourlyWeather.value = []
-                if let weather = weather {
-                    let newWeather = Observable(weather).value
-                    newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
-                        self.setHourlyWeather(newWeather: newWeather, weather: item)
-                        self.getCurrentWeather()
+        if self.currentLocation.value != (0.0 , 0.0) {
+            switch type {
+            case .today:
+                networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
+                    self.hourlyWeather.value = []
+                    if let weather = weather {
+                        let newWeather = Observable(weather).value
+                        newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
+                            self.setHourlyWeather(newWeather: newWeather, weather: item)
+                            self.getCurrentWeather()
+                        }
                     }
                 }
-            }
-        case .tomorrow:
-            networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
-                self.hourlyWeather.value = []
-                if let weather = weather {
-                    let newWeather = Observable(weather).value
-                    newWeather.list.filter{ Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
-                        self.setHourlyWeather(newWeather: newWeather, weather: item)
-                        self.setCurrentWeather(newWeather: newWeather, weather: item)
+            case .tomorrow:
+                networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
+                    self.hourlyWeather.value = []
+                    if let weather = weather {
+                        let newWeather = Observable(weather).value
+                        newWeather.list.filter{ Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
+                            self.setHourlyWeather(newWeather: newWeather, weather: item)
+                            self.setCurrentWeather(newWeather: newWeather, weather: item)
+                        }
                     }
                 }
             }
@@ -96,6 +98,7 @@ class TodayViewModel {
             icon: weather.weather.first?.icon,
             description: weather.weather.first?.description ?? "날씨 정보 없음"
         ))
+        print("@@ \(self.hourlyWeatherCount) \(self.hourlyWeatherCount)")
     }
     
     // UI전용 모델 생성

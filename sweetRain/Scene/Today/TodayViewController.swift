@@ -76,7 +76,6 @@ class TodayViewController: UIViewController {
         }
         
         self.viewModel.hourlyWeather.bind {_ in
-            print("@@ \(self.viewModel.hourlyWeatherCount)")
             self.todayView.todayCollectionView.reloadData()
         }
         
