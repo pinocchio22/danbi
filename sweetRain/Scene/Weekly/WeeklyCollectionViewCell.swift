@@ -61,8 +61,8 @@ class WeeklyCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
-        self.backgroundColor = .customSkyblue
-        self.layer.cornerRadius = Util.smallCorner
+        backgroundColor = .customSkyblue
+        layer.cornerRadius = Util.smallCorner
     }
     
     func bind(day: String, icon: String, max: Double, min: Double) {

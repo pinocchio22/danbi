@@ -26,6 +26,7 @@ struct CurrentWeather: Codable, Equatable {
 }
 
 // MARK: - TodayWeather
+
 struct TodayWeather: Codable {
     let coord: Coord
     let weather: [Weather]
@@ -41,16 +42,19 @@ struct TodayWeather: Codable {
     let cod: Int
     
     // MARK: - Clouds
+
     struct Clouds: Codable {
         let all: Int
     }
     
     // MARK: - Coord
+
     struct Coord: Codable {
         let lon, lat: Double
     }
     
     // MARK: - Main
+
     struct Main: Codable {
         let temp, feelsLike, tempMin, tempMax: Double
         let pressure, humidity, seaLevel, grndLevel: Int
@@ -67,6 +71,7 @@ struct TodayWeather: Codable {
     }
     
     // MARK: - Sys
+
     struct Sys: Codable {
         let type, id: Int
         let country: String
@@ -74,12 +79,14 @@ struct TodayWeather: Codable {
     }
     
     // MARK: - Weather
+
     struct Weather: Codable {
         let id: Int
         let main, description, icon: String
     }
     
     // MARK: - Wind
+
     struct Wind: Codable {
         let speed: Double
         let deg: Int

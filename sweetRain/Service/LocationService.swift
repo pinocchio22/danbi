@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class LocationService: NSObject, CLLocationManagerDelegate {
-    var currentLocation: Observable<(Double, Double)> = Observable((0,0))
+    var currentLocation: Observable<(Double, Double)> = Observable((0, 0))
 
     let locationManager = CLLocationManager()
 
@@ -37,10 +37,10 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             break
         }
     }
-    
+
     func startUpdating() {
-            locationManager.startUpdatingLocation()
-        }
+        locationManager.startUpdatingLocation()
+    }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {

@@ -28,7 +28,7 @@ extension Int {
             return ""
         }
     }
-    
+
     func unixToTime() -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(self))
         let formatter = DateFormatter()

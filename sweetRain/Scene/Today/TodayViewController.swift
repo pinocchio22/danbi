@@ -31,8 +31,6 @@ class TodayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getCurrentLocation()
-//        getCurrentWeather()
-//        getHourlyWeather(type: .today)
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -68,18 +66,17 @@ class TodayViewController: UIViewController {
     }
     
     private func bind() {
-        self.viewModel.currentWeather.bind { weather in
+        viewModel.currentWeather.bind { weather in
             if let weather = weather {
-                self.todayView.updateUI(title: weather.location , icon: weather.icon ?? "", currentTemp: String(weather.currentTemp ), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp ), minTemp: String(weather.minTemp ), wind: String(weather.windSpeed), humidity: String(weather.humidity), sunset: (weather.sunSet ?? 0).unixToTime(), sunrise: (weather.sunRise ?? 0).unixToTime(), liked: self.viewModel.checkLikedWeather(weather: weather))
-
+                self.todayView.updateUI(title: weather.location, icon: weather.icon ?? "", currentTemp: String(weather.currentTemp), time: weather.timeStamp, description: weather.description, maxTemp: String(weather.maxTemp), minTemp: String(weather.minTemp), wind: String(weather.windSpeed), humidity: String(weather.humidity), sunset: (weather.sunSet ?? 0).unixToTime(), sunrise: (weather.sunRise ?? 0).unixToTime(), liked: self.viewModel.checkLikedWeather(weather: weather))
             }
         }
         
-        self.viewModel.hourlyWeather.bind {_ in
+        viewModel.hourlyWeather.bind { _ in
             self.todayView.todayCollectionView.reloadData()
         }
         
-        self.viewModel.selectedIndex.bind { selected in
+        viewModel.selectedIndex.bind { selected in
             self.todayView.selectedUI(selected: selected)
             if !selected {
                 // 오늘 데이터 불러오기
@@ -90,7 +87,7 @@ class TodayViewController: UIViewController {
             }
         }
         
-        self.viewModel.currentLocation.bind {_ in
+        viewModel.currentLocation.bind { _ in
             self.getCurrentWeather()
             self.getHourlyWeather(type: .today)
         }
@@ -126,7 +123,7 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.identifier, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
         if let item = viewModel.hourlyWeather.value[indexPath.row] {
-            cell.bind(time: item.timeStamp , icon: item.icon ?? "" , temp: String(item.currentTemp))
+            cell.bind(time: item.timeStamp, icon: item.icon ?? "", temp: String(item.currentTemp))
         }
         return cell
     }

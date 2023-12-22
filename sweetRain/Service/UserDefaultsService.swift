@@ -34,13 +34,13 @@ class UserDefaultsService {
         
         var allList = [[CurrentWeather]]()
         
-            for (_, value) in allData {
-                if let data = value as? Data {
-                    if let weather = try? JSONDecoder().decode([CurrentWeather].self, from: data) {
-                        allList.append(weather)
-                    }
+        for (_, value) in allData {
+            if let data = value as? Data {
+                if let weather = try? JSONDecoder().decode([CurrentWeather].self, from: data) {
+                    allList.append(weather)
                 }
             }
+        }
         return allList
     }
 }

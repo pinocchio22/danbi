@@ -7,8 +7,8 @@
 
 import Foundation
 
-import SnapKit
 import Alamofire
+import SnapKit
 
 class NetworkService {
     func getCurrentWeather(lat: Double, lon: Double, completion: @escaping (TodayWeather?) -> Void) {

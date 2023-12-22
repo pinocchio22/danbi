@@ -8,13 +8,6 @@
 import Foundation
 
 struct WeeklyWeather {
-//    let currentTemp: Double
-//    let maxTemp: Double
-//    let minTemp: Double
-//    let feelTemp: Double
-//    let timeStamp: String
-//    let discription: String
-//    let icon: String
     let date: String
     let timeStamp: String
     let maxTemp: Double
@@ -23,6 +16,7 @@ struct WeeklyWeather {
 }
 
 // MARK: - WeekWeather
+
 struct WeekWeather: Codable {
     let cod: String
     let message, cnt: Int
@@ -30,6 +24,7 @@ struct WeekWeather: Codable {
     let city: City
     
     // MARK: - City
+
     struct City: Codable {
         let id: Int
         let name: String
@@ -38,13 +33,14 @@ struct WeekWeather: Codable {
         let population, timezone, sunrise, sunset: Int
         
         // MARK: - Coord
+
         struct Coord: Codable {
             let lat, lon: Double
         }
-
     }
     
     // MARK: - List
+
     struct List: Codable {
         let dt: Double
         let main: MainClass
@@ -64,11 +60,13 @@ struct WeekWeather: Codable {
         }
         
         // MARK: - Clouds
+
         struct Clouds: Codable {
             let all: Int
         }
         
         // MARK: - MainClass
+
         struct MainClass: Codable {
             let temp, feelsLike, tempMin, tempMax: Double
             let pressure, seaLevel, grndLevel, humidity: Int
@@ -88,6 +86,7 @@ struct WeekWeather: Codable {
         }
         
         // MARK: - Rain
+
         struct Rain: Codable {
             let the3H: Double
 
@@ -97,16 +96,18 @@ struct WeekWeather: Codable {
         }
         
         // MARK: - Sys
+
         struct Sys: Codable {
             let pod: Pod
             
             enum Pod: String, Codable {
-                case d = "d"
-                case n = "n"
+                case d
+                case n
             }
         }
         
         // MARK: - Weather
+
         struct Weather: Codable {
             let id: Int
             let main: String
@@ -115,6 +116,7 @@ struct WeekWeather: Codable {
         }
         
         // MARK: - Wind
+
         struct Wind: Codable {
             let speed: Double
             let deg: Int

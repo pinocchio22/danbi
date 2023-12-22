@@ -38,10 +38,10 @@ class TabBarController: UITabBarController {
 extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if let navigationController = viewController as? UINavigationController {
-                DispatchQueue.main.async {
-                    navigationController.popToRootViewController(animated: false)
-                }
+            DispatchQueue.main.async {
+                navigationController.popToRootViewController(animated: false)
             }
+        }
         return true
     }
 }

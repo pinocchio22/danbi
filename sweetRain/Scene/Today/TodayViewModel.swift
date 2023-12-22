@@ -17,12 +17,13 @@ class TodayViewModel {
     var hourlyWeatherCount: Int {
         return hourlyWeather.value.count
     }
-    var currentLocation: Observable<(Double, Double)> = Observable((0,0))
+
+    var currentLocation: Observable<(Double, Double)> = Observable((0, 0))
     var selectedIndex: Observable<Bool> = Observable(false)
     
     func getCurrentLocation() {
-        self.locationService.startUpdating()
-        self.locationService.currentLocation.bind {_ in
+        locationService.startUpdating()
+        locationService.currentLocation.bind { _ in
             self.currentLocation.value = self.locationService.currentLocation.value
         }
     }
@@ -37,7 +38,7 @@ class TodayViewModel {
     }
 
     func getHourlyWeather(type: WeatherViewType) {
-        if self.currentLocation.value != (0.0 , 0.0) {
+        if currentLocation.value != (0.0, 0.0) {
             switch type {
             case .today:
                 networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
@@ -55,7 +56,7 @@ class TodayViewModel {
                     self.hourlyWeather.value = []
                     if let weather = weather {
                         let newWeather = Observable(weather).value
-                        newWeather.list.filter{ Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
+                        newWeather.list.filter { Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
                             self.setHourlyWeather(newWeather: newWeather, weather: item)
                             self.setCurrentWeather(newWeather: newWeather, weather: item)
                         }
@@ -67,7 +68,7 @@ class TodayViewModel {
     
     func likedWeather(weather: [CurrentWeather?]) -> Bool {
         let key = weather[0]?.location ?? ""
-        let value = weather.compactMap{ $0 }
+        let value = weather.compactMap { $0 }
         if checkLikedWeather(weather: weather[0]) {
             userDefaultsService.removeDefaults(key: key)
             return false
@@ -83,7 +84,7 @@ class TodayViewModel {
     }
     
     private func setHourlyWeather(newWeather: WeekWeather, weather: WeekWeather.List) {
-        self.hourlyWeather.value.append(CurrentWeather(
+        hourlyWeather.value.append(CurrentWeather(
             id: newWeather.city.id,
             location: newWeather.city.name,
             lat: newWeather.city.coord.lat,
@@ -98,13 +99,12 @@ class TodayViewModel {
             icon: weather.weather.first?.icon,
             description: weather.weather.first?.description ?? "날씨 정보 없음"
         ))
-        print("@@ \(self.hourlyWeatherCount) \(self.hourlyWeatherCount)")
     }
     
     // UI전용 모델 생성
     
     private func setCurrentWeather(newWeather: TodayWeather) {
-        self.currentWeather.value = CurrentWeather(
+        currentWeather.value = CurrentWeather(
             id: newWeather.id,
             location: newWeather.name,
             lat: newWeather.coord.lat,
@@ -124,7 +124,7 @@ class TodayViewModel {
     }
     
     private func setCurrentWeather(newWeather: WeekWeather, weather: WeekWeather.List) {
-        self.currentWeather.value = CurrentWeather(
+        currentWeather.value = CurrentWeather(
             id: newWeather.city.id,
             location: newWeather.city.name,
             lat: newWeather.city.coord.lat,

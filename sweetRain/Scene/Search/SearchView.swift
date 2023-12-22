@@ -15,6 +15,7 @@ protocol SearchViewDelegate: AnyObject {
 
 class SearchView: UIView {
     // MARK: Properties
+
     var filteredWeather: [[CurrentWeather]]?
     weak var delegate: SearchViewDelegate?
     var liked: Bool?
@@ -45,9 +46,10 @@ class SearchView: UIView {
         return view
     }()
     
-    //divider
+    // divider
     
     // MARK: LifeCycle
+
     init() {
         super.init(frame: .zero)
         setupUI()
@@ -92,7 +94,7 @@ class SearchView: UIView {
     
     func updateUI(filteredWeather: [[CurrentWeather]]) {
         self.filteredWeather = filteredWeather
-        self.searchCollectionView.reloadData()
+        searchCollectionView.reloadData()
     }
     
     func checkLiked(liked: Bool) {
@@ -101,17 +103,17 @@ class SearchView: UIView {
     
     func selectedUI(selected: Bool, weather: [[CurrentWeather]]) {
         searchBar.isHidden = selected
-        self.filteredWeather = []
+        filteredWeather = []
         if !selected {
             // 검색
             searchTitleLabel.text = "검색"
         } else {
             // 즐겨찾기
             searchTitleLabel.text = "즐겨찾기"
-            self.liked = true
-            self.filteredWeather = weather
+            liked = true
+            filteredWeather = weather
         }
-        self.searchCollectionView.reloadData()
+        searchCollectionView.reloadData()
     }
 }
 

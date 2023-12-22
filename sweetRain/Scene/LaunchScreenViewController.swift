@@ -12,6 +12,7 @@ import SnapKit
 
 class LaunchScreenViewController: UIViewController {
     // MARK: Properties
+
     private let backgroundView: UIImageView = {
         let view = UIImageView()
         view.alpha = 0.8
@@ -32,6 +33,7 @@ class LaunchScreenViewController: UIViewController {
     }
     
     // MARK: Method
+
     private func setupUI() {
         view.addSubview(backgroundView)
         view.addSubview(launchLogo)
@@ -47,7 +49,6 @@ class LaunchScreenViewController: UIViewController {
     }
     
     private func configureUI() {
-        
 //        backgroundView.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/84/04/6d/84046da36518327ffe0ee437fe7f1af9.gif"))
         backgroundView.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/1c/c1/a4/1cc1a4bc1873432f3864e649e65b81aa.gif"))
     }

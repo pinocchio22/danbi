@@ -51,11 +51,11 @@ class WeeklyViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.dayOfWeekDic.bind {_ in
+        viewModel.dayOfWeekDic.bind { _ in
             self.weeklyCollectionView.weeklyCollectionView.reloadData()
         }
         
-        viewModel.currentLocation.bind {_ in
+        viewModel.currentLocation.bind { _ in
             self.getWeeklyWeather()
         }
     }

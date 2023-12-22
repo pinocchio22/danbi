@@ -15,7 +15,7 @@ class CustomWeatherView: UIView {
     var titleLabel: CustomLabel?
     var height: CGFloat = 0
     var subView: Any?
-    
+
     // MARK: LifeCycle
 
     init(title: String, viewHeight: CGFloat) {
@@ -26,19 +26,19 @@ class CustomWeatherView: UIView {
         self.layer.cornerRadius = Util.largeCorner
         self.setupUI()
     }
-    
+
     convenience init(title: String, viewHeight: CGFloat, type: CustomWeatherViewType, addView: Any) {
         self.init(title: title, viewHeight: viewHeight)
         self.subView = addView
-        
+
         switch type {
         case .label:
             guard let subView = subView as? UILabel, let titleLabel = titleLabel else { return }
-            setSubView(subView, titleLabel: titleLabel)
+            self.setSubView(subView, titleLabel: titleLabel)
 
         case .imageView:
             guard let subView = subView as? UIImageView, let titleLabel = titleLabel else { return }
-            setSubView(subView, titleLabel: titleLabel)
+            self.setSubView(subView, titleLabel: titleLabel)
         }
     }
 
@@ -46,27 +46,27 @@ class CustomWeatherView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Method
 
     private func setupUI() {
         guard let titleLabel = titleLabel else { return }
-        
+
         addSubview(titleLabel)
-        
+
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).inset(Util.verticalMargin)
             $0.leading.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)
         }
-        
+
         self.snp.makeConstraints {
             $0.height.equalTo(self.height)
         }
     }
-    
+
     func setSubView<T: UIView>(_ subView: T, titleLabel: UILabel) {
         addSubview(subView)
-                
+
         subView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Util.horizontalMargin)

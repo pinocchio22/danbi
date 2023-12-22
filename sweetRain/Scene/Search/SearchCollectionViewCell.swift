@@ -17,6 +17,7 @@ protocol SearchCollectionViewCellDelegate: AnyObject {
 
 class SearchCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
+
     var filteredWeather: [CurrentWeather]?
     
     weak var delegate: SearchCollectionViewCellDelegate?
@@ -77,28 +78,28 @@ class SearchCollectionViewCell: UICollectionViewCell {
     }
     
     private func setActions() {
-        likedButton.addAction(UIAction(handler: {_ in
+        likedButton.addAction(UIAction(handler: { _ in
             if let indexPath = self.indexPath {
                 self.delegate?.likedButtonTapped(in: self, at: indexPath)
-                    }
+            }
         }), for: .touchUpInside)
     }
     
     func bind(filteredWeather: [CurrentWeather], liked: Bool) {
         if filteredWeather.isEmpty {
             // 즐겨찾기
-            self.likedButton.isHidden = true
-            self.searchResultCollectionView.isHidden = true
-            self.nameLabel.isHidden = true
+            likedButton.isHidden = true
+            searchResultCollectionView.isHidden = true
+            nameLabel.isHidden = true
         } else {
             // 검색
-            self.likedButton.isHidden = false
-            self.likedButton.isSelected = liked
-            self.searchResultCollectionView.isHidden = false
-            self.nameLabel.isHidden = false
-            self.nameLabel.text = filteredWeather.first?.location
+            likedButton.isHidden = false
+            likedButton.isSelected = liked
+            searchResultCollectionView.isHidden = false
+            nameLabel.isHidden = false
+            nameLabel.text = filteredWeather.first?.location
             self.filteredWeather = filteredWeather
-            self.searchResultCollectionView.reloadData()
+            searchResultCollectionView.reloadData()
         }
     }
 }

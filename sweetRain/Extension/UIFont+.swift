@@ -10,15 +10,6 @@ import UIKit
 extension UIFont {
     static func designHouse(size fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
         var fontName: String
-
-//        switch weight {
-//        case .bold:
-//            fontName = "D2CodingligatureBold"
-//        case .regular:
-//            fontName = "D2Coding"
-//        default:
-//            fontName = "D2Coding"
-//        }
         switch weight {
         case .bold:
             fontName = "designhouseBold"
@@ -29,5 +20,5 @@ extension UIFont {
         }
 
         return UIFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: fontSize, weight: weight)
-            }
+    }
 }

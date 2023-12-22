@@ -13,7 +13,7 @@ class WeatherCollectionView: UICollectionView {
         layout.scrollDirection = .horizontal
         return layout
     }()
-    
+
     init(backgroundColor: UIColor, cell: UICollectionViewCell.Type) {
         super.init(frame: .zero, collectionViewLayout: self.flowLayout)
         self.isScrollEnabled = true

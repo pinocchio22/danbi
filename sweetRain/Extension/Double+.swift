@@ -13,7 +13,7 @@ extension Double {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "KST")
         formatter.locale = Locale(identifier: "ko_KR")
-        
+
         switch type {
         case .Date:
             formatter.dateFormat = "EEEE"
@@ -22,10 +22,10 @@ extension Double {
         case .Hour:
             formatter.dateFormat = "HH시"
         }
-        
+
         return formatter.string(from: date)
     }
-    
+
     func setRounded() -> Double {
         return (self * 10).rounded() / 10
     }
