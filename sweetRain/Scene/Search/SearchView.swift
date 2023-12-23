@@ -46,8 +46,6 @@ class SearchView: UIView {
         return view
     }()
     
-    // divider
-    
     // MARK: LifeCycle
 
     init() {

@@ -63,7 +63,11 @@ class TodayView: UIView {
     
     private let maxminTempLabel = CustomLabel(text: "최고 / 최저", textColor: .black, fontSize: Util.mediumFont, fontWeight: .regular)
     
-    // devider
+    private let divider: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        return view
+    }()
     
     lazy var weatherStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [descriptionLabel, todayCollectionView, windView, humidityView, sunsetView, sunriseView])
@@ -104,6 +108,7 @@ class TodayView: UIView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(todayStackView)
+        contentView.addSubview(divider)
         contentView.addSubview(weatherStackView)
         
         scrollView.snp.makeConstraints {
@@ -123,12 +128,18 @@ class TodayView: UIView {
             $0.height.equalTo(100)
         }
         
+        divider.snp.makeConstraints {
+            $0.top.equalTo(todayStackView.snp.bottom).inset(-Util.verticalMargin)
+            $0.leading.trailing.equalToSuperview().inset(Util.horizontalMargin)
+            $0.height.equalTo(1)
+        }
+        
         weatherIcon.snp.makeConstraints {
             $0.size.equalTo(100)
         }
         
         weatherStackView.snp.makeConstraints {
-            $0.top.equalTo(todayStackView.snp.bottom)
+            $0.top.equalTo(divider.snp.bottom).inset(-Util.verticalMargin)
             $0.leading.trailing.equalTo(contentView).inset(Util.horizontalMargin)
             $0.bottom.equalTo(contentView.snp.bottom)
         }
