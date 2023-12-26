@@ -32,35 +32,54 @@ class TodayViewModel {
         networkService.getCurrentWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
             if let weather = weather {
                 let newWeather = Observable(weather).value
-                self.setCurrentWeather(newWeather: newWeather)
+                self.currentWeather.value = newWeather
+//                self.setCurrentWeather(newWeather: newWeather)
             }
         }
     }
 
+//    func getHourlyWeather(type: WeatherViewType) {
+//        if currentLocation.value != (0.0, 0.0) {
+//            switch type {
+//            case .today:
+//                networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
+//                    self.hourlyWeather.value = []
+//                    if let weather = weather {
+//                        let newWeather = Observable(weather).value
+//                        newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
+//                            self.setHourlyWeather(newWeather: newWeather, weather: item)
+//                            self.getCurrentWeather()
+//                        }
+//                    }
+//                }
+//            case .tomorrow:
+//                networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
+//                    self.hourlyWeather.value = []
+//                    if let weather = weather {
+//                        let newWeather = Observable(weather).value
+//                        newWeather.list.filter { Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
+//                            self.setHourlyWeather(newWeather: newWeather, weather: item)
+//                            self.setCurrentWeather(newWeather: newWeather, weather: item)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
     func getHourlyWeather(type: WeatherViewType) {
+        self.hourlyWeather.value = []
         if currentLocation.value != (0.0, 0.0) {
             switch type {
             case .today:
-                networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
-                    self.hourlyWeather.value = []
-                    if let weather = weather {
-                        let newWeather = Observable(weather).value
-                        newWeather.list.filter { Date(timeIntervalSince1970: $0.dt) > Date() }.prefix(8).forEach { item in
-                            self.setHourlyWeather(newWeather: newWeather, weather: item)
-                            self.getCurrentWeather()
-                        }
-                    }
+                networkService.getTodayWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
+                    self.hourlyWeather.value.append(weather)
+                    self.getCurrentWeather()
                 }
             case .tomorrow:
-                networkService.getWeeklyWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
-                    self.hourlyWeather.value = []
-                    if let weather = weather {
-                        let newWeather = Observable(weather).value
-                        newWeather.list.filter { Date(timeIntervalSince1970: $0.dt).convertDate(type: .day) == Date().convertDate(type: .day) + 1 }.forEach { item in
-                            self.setHourlyWeather(newWeather: newWeather, weather: item)
-                            self.setCurrentWeather(newWeather: newWeather, weather: item)
-                        }
-                    }
+                networkService.getTomorrowWeather(lat: currentLocation.value.0, lon: currentLocation.value.1) { weather in
+                    self.hourlyWeather.value.append(weather)
+                    self.currentWeather.value = weather
                 }
             }
         }
@@ -103,25 +122,25 @@ class TodayViewModel {
     
     // UI전용 모델 생성
     
-    private func setCurrentWeather(newWeather: TodayWeather) {
-        currentWeather.value = CurrentWeather(
-            id: newWeather.id,
-            location: newWeather.name,
-            lat: newWeather.coord.lat,
-            lon: newWeather.coord.lon,
-            currentTemp: newWeather.main.temp.setRounded(),
-            maxTemp: newWeather.main.tempMax.setRounded(),
-            minTemp: newWeather.main.tempMin.setRounded(),
-            feelTemp: newWeather.main.feelsLike.setRounded(),
-            timeStamp: Date().toStringDetail(),
-            humidity: newWeather.main.humidity,
-            windSpeed: newWeather.wind.speed,
-            sunRise: newWeather.sys.sunrise,
-            sunSet: newWeather.sys.sunset,
-            icon: newWeather.weather.first?.icon ?? "",
-            description: newWeather.weather.first?.description ?? ""
-        )
-    }
+//    private func setCurrentWeather(newWeather: TodayWeather) {
+//        currentWeather.value = CurrentWeather(
+//            id: newWeather.id,
+//            location: newWeather.name,
+//            lat: newWeather.coord.lat,
+//            lon: newWeather.coord.lon,
+//            currentTemp: newWeather.main.temp.setRounded(),
+//            maxTemp: newWeather.main.tempMax.setRounded(),
+//            minTemp: newWeather.main.tempMin.setRounded(),
+//            feelTemp: newWeather.main.feelsLike.setRounded(),
+//            timeStamp: Date().toStringDetail(),
+//            humidity: newWeather.main.humidity,
+//            windSpeed: newWeather.wind.speed,
+//            sunRise: newWeather.sys.sunrise,
+//            sunSet: newWeather.sys.sunset,
+//            icon: newWeather.weather.first?.icon ?? "",
+//            description: newWeather.weather.first?.description ?? ""
+//        )
+//    }
     
     private func setCurrentWeather(newWeather: WeekWeather, weather: WeekWeather.List) {
         currentWeather.value = CurrentWeather(
