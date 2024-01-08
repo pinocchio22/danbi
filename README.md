@@ -1,4 +1,4 @@
-# danbi
+# 단비
 ECWeather에 MVVM 패턴 적용 및 고도화
 
 ### 개발기간
